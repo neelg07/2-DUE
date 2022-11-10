@@ -1,0 +1,33 @@
+.main {
+    display: flex;
+    flex-flow: column;
+}
+
+.navbar {
+    padding-left: 1%;
+}
+
+span {
+    font-size: 30px;
+    font-family: 'Product Sans', sans-serif;
+}
+
+span.blue {
+    color: #4285F4;
+}
+
+span.red {
+    color: #DB4437;
+}
+
+span.dash {
+    padding: 2px;
+}
+
+span.yellow {
+    color: #F4B400;
+}
+
+span.green {
+    color: #0F9D58;
+}
