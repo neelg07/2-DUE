@@ -120,6 +120,40 @@ span h1 {
 
 /* Login Pop Up */
 
+.login-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 75px 75px;
+    width: 45%;
+    min-width: 550px;
+
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+.login-header {
+    margin-bottom: 25px;
+}
+
+.login-form {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
 .user {
-    width: 50px;
+    width: 65px;
+}
+
+.login-submit {
+    width: 100%;
+}
+
+.forgot-pass {
+    font-size: 10px;
+    margin-left: auto;
 }
