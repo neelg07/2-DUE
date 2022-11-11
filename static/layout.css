@@ -154,6 +154,25 @@ span h1 {
     margin-bottom: 25px;
 }
 
+.close-login {
+    border: 0px;
+    border-radius: 100px;
+    font-size:large;
+    color: #000;
+    background: #ffffff;
+    position: fixed;
+    top: 2%;
+    left: 95%;
+}
+
+button.close-login:hover {
+    transform: scale(1.2);
+}
+
+button.close-login:active {
+    transform: translateY(3px);
+}
+
 .login-form {
     display: flex;
     flex-flow: column;
