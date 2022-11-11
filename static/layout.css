@@ -117,3 +117,9 @@ span h1 {
 .login-btn {
     margin-left: 5px;
 }
+
+/* Login Pop Up */
+
+.user {
+    width: 50px;
+}
