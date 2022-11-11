@@ -126,13 +126,28 @@ span h1 {
     justify-content: center;
     align-items: center;
 
-    padding: 40px 75px 75px;
+    padding: 40px 75px;
     width: 45%;
     min-width: 550px;
 
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.5);
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    opacity: 100%;
+}
+
+.blur {
+    filter: blur(20px);
+}
+
+.hide {
+    display: none;
 }
 
 .login-header {
@@ -143,6 +158,7 @@ span h1 {
     display: flex;
     flex-flow: column;
     align-items: center;
+    margin-top: 15px;
 }
 
 .user {
@@ -150,10 +166,12 @@ span h1 {
 }
 
 .login-submit {
+    margin-top: 15px;
     width: 100%;
 }
 
 .forgot-pass {
     font-size: 10px;
+    padding: 5px;
     margin-left: auto;
 }
