@@ -9,6 +9,7 @@
 
 {% block main %}
     
+    <!-- Welcome Container -->
     <div class="index-header">
         <div class="welcome">
             <h1 class="yellow">Welcome</h1>
@@ -18,6 +19,7 @@
         <p class="header-para">A Personalized To-Do List Web Application</p>
     </div>
 
+    <!-- Login Popup -->
     <div class="login-container hide">
         <div class="close-login">
             <button type="button" class="close-login">X</button>
@@ -39,4 +41,27 @@
         </div>
     </div>
     
+    <!-- Register Popup-->
+    <div class="register-container">
+        <div class="close-register">
+            <button class="close-register" type="button">X</button>
+        </div>
+        <div class="register-header">
+            <h2>Welcome!</h2>
+        </div>
+        <div class="register-content">
+            <form action="/" class="register-form" method="post">
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="Username" name="Username" type="text" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control mx-auto w-auto" id="Password" name="Password" placeholder="Password">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control mx-auto w-auto" id="Verify-Pass" name="verify-pass" placeholder="Confirm Password">
+                </div>
+                <button class="btn btn-primary register-submit" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

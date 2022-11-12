@@ -120,7 +120,8 @@ span h1 {
 
 /* Login Pop Up */
 
-.login-container {
+.login-container,
+.register-container {
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -150,11 +151,13 @@ span h1 {
     display: none;
 }
 
-.login-header {
+.login-header,
+.register-header {
     margin-bottom: 25px;
 }
 
-.close-login {
+.close-login,
+.close-register {
     border: 0px;
     border-radius: 100px;
     font-size:large;
@@ -165,15 +168,18 @@ span h1 {
     left: 95%;
 }
 
-button.close-login:hover {
+button.close-login:hover,
+button.close-register:hover {
     transform: scale(1.2);
 }
 
-button.close-login:active {
+button.close-login:active,
+button.close-register:active {
     transform: translateY(3px);
 }
 
-.login-form {
+.login-form,
+.register-form {
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -184,7 +190,8 @@ button.close-login:active {
     width: 65px;
 }
 
-.login-submit {
+.login-submit,
+.register-submit {
     margin-top: 15px;
     width: 100%;
 }
