@@ -64,6 +64,31 @@ closeReg.addEventListener('click', () => {
 });
 
 // Sign up info verification
+function checkRegUser() {
+    if (regUser.value.length <= 3 || regUser.value.length >= 18) {
+        return false;
+    } else {
+        return true;
+    }
+};
+
+function checkRegPass() {
+    if (regPass.value.length <= 3 || regPass.value.length >= 18) {
+        return false;
+    } else {
+        return true;
+    }
+};
+
+function checkPassMatch() {
+    if (regPass.value !== regConfirm.value) {
+        return false;
+    } else {
+        return true;
+    }
+};
+
+
 regUser.addEventListener('keypress', () => {
 
     if (regUser.value.length < 2 || regUser.value.length > 17) {
@@ -80,20 +105,62 @@ regUser.addEventListener('keydown', function(event) {
     switch (event.key) {
         case 'Backspace':
         case 'Delete':
-            if (regUser.value.length === 3) {
+            if (!checkRegUser()) {
                 regUser.setAttribute('style', 'border: 1px solid red;');
                 regBtn.disabled = true;
-            } else if (regUser.value.length === 19) {
+            } else {
                 regUser.removeAttribute('style');
                 regBtn.disabled = false;
             }
     }
 });
 
-/*
+
 regPass.addEventListener('keypress', () => {
-    
-}) */
+    if (regPass.value.length < 2 || regPass.value.length > 17) {
+        regPass.setAttribute('style', 'border: 1px solid red;');
+        regBtn.disabled = true;
+    } else {
+        regPass.removeAttribute('style');
+        regBtn.disabled = false;
+    }
+});
+
+regPass.addEventListener('keydown', function(event) {
+
+    switch (event.key) {
+        case 'Backspace':
+        case 'Delete':
+            if (!checkRegPass()) {
+                regPass.setAttribute('style', 'border: 1px solid red;');
+                regBtn.disabled = true;
+            } else {
+                regPass.removeAttribute('style');
+                regBtn.disabled = false;
+            }
+    }
+});
+
+
+const regForm = document.querySelector('.register-form');
+
+regForm.addEventListener('submit', (event) => {
+
+    if (!checkPassMatch()) {
+        alert('Passwords must match!');
+        event.preventDefault();
+    }
+    if (regUser.value === '') {
+        alert('Must enter username');
+        event.preventDefault();
+    }
+    if (regPass.value === '') {
+        alert('Must enter password');
+        event.preventDefault();
+    }
+});
+
+
 
 // Show password function
 logPassCheck.addEventListener('click', () => {
