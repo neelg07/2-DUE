@@ -37,7 +37,12 @@ def index():
     
     # User routes via POST 
     if request.method == 'POST':
-        return redirect('/weather')
+
+        if "register-submit" in request.form:
+            return redirect('/weather')
+
+        elif "login-submit" in request.form:
+            return redirect('/weather')
 
     # User routes via GET
     else:

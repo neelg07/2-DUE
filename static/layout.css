@@ -190,8 +190,8 @@ button.close-register:active {
     width: 65px;
 }
 
-.login-submit,
-.register-submit {
+#login-submit,
+#register-submit {
     margin-top: 15px;
     width: 100%;
 }
