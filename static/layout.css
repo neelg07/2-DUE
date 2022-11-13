@@ -206,3 +206,12 @@ button.close-register:active {
 .reg-show-pass {
     margin-left: 150px;
 }
+
+.register-content {
+    display: flex;
+}
+
+.error-display {
+    max-width: 100px;
+    font-size: 12px;
+}

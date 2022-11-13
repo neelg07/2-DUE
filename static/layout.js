@@ -1,10 +1,7 @@
 // Log In Button pop up
 const login = document.querySelector('.login-btn');
-
 const loginContainer = document.querySelector('.login-container');
-
 const indexHeader = document.querySelector('.index-header');
-
 const closeLogin = document.querySelector('.close-login');
 
 const logUser = document.getElementById('username');
@@ -16,9 +13,9 @@ login.addEventListener('click', () => {
     
     loginContainer.classList.remove('hide');
     logUser.focus();
-    indexHeader.classList.add('blur');
 
     closeReg.click();
+    indexHeader.classList.add('blur');
 });
 
 closeLogin.addEventListener('click', () => {
@@ -35,7 +32,6 @@ closeLogin.addEventListener('click', () => {
 // Sign Up button popup
 const signUp = document.querySelector('.register-btn');
 const regContainer = document.querySelector('.register-container')
-
 const closeReg = document.querySelector('.close-register')
 
 const regUser = document.getElementById('Username');
@@ -43,14 +39,16 @@ const regPass = document.getElementById('Password');
 const regConfirm = document.getElementById('Verify-Pass');
 const regPassCheck = document.querySelector('.reg-show-pass');
 
+const regBtn = document.querySelector('.register-submit');
+
 
 signUp.addEventListener('click', () => {
 
     regContainer.classList.remove('hide');
     regUser.focus();
-    indexHeader.classList.add('blur');
 
     closeLogin.click();
+    indexHeader.classList.add('blur');
 });
 
 closeReg.addEventListener('click', () => {
@@ -63,6 +61,33 @@ closeReg.addEventListener('click', () => {
     regContainer.classList.add('hide');
     indexHeader.classList.remove('blur');
 })
+
+// Sign up info verification
+regUser.addEventListener('keypress', () => {
+
+    if (regUser.value.length < 2 || regUser.value.length > 17) {
+        regUser.setAttribute('style', 'border: 1px solid red;');
+        regBtn.disabled = true;
+    } else {
+        regUser.removeAttribute('style');
+        regBtn.disabled = false;
+    }
+});
+
+regUser.addEventListener('keydown', function(event) {
+
+    switch (event.key) {
+        case 'Backspace':
+        case 'Delete':
+            if (regUser.value.length === 3) {
+                regUser.setAttribute('style', 'border: 1px solid red;');
+                regBtn.disabled = true;
+            } else if (regUser.value.length === 19) {
+                regUser.removeAttribute('style');
+                regBtn.disabled = false;
+            }
+    }
+});
 
 // Show password function
 logPassCheck.addEventListener('click', () => {
