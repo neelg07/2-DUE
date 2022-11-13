@@ -32,6 +32,25 @@ def after_request(response):
     return response
 
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    
+    # User routes via POST 
+    if request.method == 'POST':
+        return redirect('/weather')
+
+    # User routes via GET
+    else:
+        return render_template('index.html')
+
+
+@app.route('/weather', methods=['GET', 'POST'])
+#@login_required
+def weather():
+
+    if request.method == 'GET':
+
+        return render_template('weather.html')
+
+    else:
+        return render_template('weather.html')
