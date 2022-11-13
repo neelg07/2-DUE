@@ -9,6 +9,7 @@ const closeLogin = document.querySelector('.close-login');
 
 const logUser = document.getElementById('username');
 const logPass = document.getElementById('password');
+const logPassCheck = document.querySelector('.show-pass');
 
 
 login.addEventListener('click', () => {
@@ -17,18 +18,21 @@ login.addEventListener('click', () => {
     logUser.focus();
     indexHeader.classList.add('blur');
 
-    regContainer.classList.add('hide');
+    closeReg.click();
 });
 
 closeLogin.addEventListener('click', () => {
 
     logUser.value = '';
     logPass.value = '';
+    logPassCheck.checked = false;
+
     loginContainer.classList.add('hide');
     indexHeader.classList.remove('blur');
 });
 
 
+// Sign Up button popup
 const signUp = document.querySelector('.register-btn');
 const regContainer = document.querySelector('.register-container')
 
@@ -37,6 +41,7 @@ const closeReg = document.querySelector('.close-register')
 const regUser = document.getElementById('Username');
 const regPass = document.getElementById('Password');
 const regConfirm = document.getElementById('Verify-Pass');
+const regPassCheck = document.querySelector('.reg-show-pass');
 
 
 signUp.addEventListener('click', () => {
@@ -45,7 +50,7 @@ signUp.addEventListener('click', () => {
     regUser.focus();
     indexHeader.classList.add('blur');
 
-    loginContainer.classList.add('hide');
+    closeLogin.click();
 });
 
 closeReg.addEventListener('click', () => {
@@ -53,6 +58,29 @@ closeReg.addEventListener('click', () => {
     regUser.value = '';
     regPass.value = '';
     regConfirm.value = '';
+    regPassCheck.checked = false;
+
     regContainer.classList.add('hide');
     indexHeader.classList.remove('blur');
 })
+
+// Show password function
+logPassCheck.addEventListener('click', () => {
+
+    if (logPassCheck.checked === true) {
+        logPass.type = 'text';
+    } else {
+        logPass.type = 'password';
+    }
+});
+
+regPassCheck.addEventListener('click', () => {
+
+    if (regPassCheck.checked === true) {
+        regPass.type = 'text';
+        regConfirm.type = 'text';
+    } else {
+        regPass.type = 'password';
+        regConfirm.type = 'password';
+    }
+});
