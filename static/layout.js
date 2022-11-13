@@ -60,7 +60,8 @@ closeReg.addEventListener('click', () => {
 
     regContainer.classList.add('hide');
     indexHeader.classList.remove('blur');
-})
+    regUser.removeAttribute('style');
+});
 
 // Sign up info verification
 regUser.addEventListener('keypress', () => {
@@ -88,6 +89,11 @@ regUser.addEventListener('keydown', function(event) {
             }
     }
 });
+
+/*
+regPass.addEventListener('keypress', () => {
+    
+}) */
 
 // Show password function
 logPassCheck.addEventListener('click', () => {
