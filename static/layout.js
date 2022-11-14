@@ -143,7 +143,6 @@ regPass.addEventListener('keydown', function(event) {
 
 
 const regForm = document.querySelector('.register-form');
-const regAlert = document.querySelector('.reg-alert');
 
 regForm.addEventListener('submit', (event) => {
 
