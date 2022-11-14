@@ -39,7 +39,7 @@ const regPass = document.getElementById('Password');
 const regConfirm = document.getElementById('Verify-Pass');
 const regPassCheck = document.querySelector('.reg-show-pass');
 
-const regBtn = document.querySelector('.register-submit');
+const regBtn = document.getElementById('register-submit');
 
 
 signUp.addEventListener('click', () => {
@@ -143,6 +143,7 @@ regPass.addEventListener('keydown', function(event) {
 
 
 const regForm = document.querySelector('.register-form');
+const regAlert = document.querySelector('.reg-alert');
 
 regForm.addEventListener('submit', (event) => {
 
@@ -158,8 +159,12 @@ regForm.addEventListener('submit', (event) => {
         alert('Must enter password');
         event.preventDefault();
     }
-});
 
+    if (checkPassMatch() && regUser.value && regPass.value) {
+        // Alert successful registration
+        alert('You have successfully registered!')
+    }
+});
 
 
 // Show password function
