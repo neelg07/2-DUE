@@ -43,13 +43,15 @@ def index():
             
             username = request.form.get('Username')
 
+
             # Ensure username is unique in database
             rows = db.execute("SELECT * FROM users WHERE username = ?", username)
             if len(rows) != 0:
-                return redirect('/')
+                error = "Username already taken!"
+                return render_template('error.html', error=error)
 
             else:
-                # Log username and password(hashed) into db and give security code 
+                # Log username and password(hashed) into db and give security code
                 return redirect('/weather')
 
 

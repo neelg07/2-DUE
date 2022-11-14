@@ -216,4 +216,11 @@ button.close-register:active {
     font-size: 12px;
 }
 
+/* Error.html */
+
+.error {
+    margin-top: 50px;
+}
+
+
 /* Weather.html */
