@@ -38,11 +38,23 @@ def index():
     # User routes via POST 
     if request.method == 'POST':
 
-        if "register-submit" in request.form:           # Register Post Request
-            return redirect('/weather')
+        # REGISTER POST REQUEST
+        if "register-submit" in request.form:
+            
+            username = request.form.get('Username')
+
+            # Ensure username is unique in database
+            rows = db.execute("SELECT * FROM users WHERE username = ?", username)
+            if len(rows) != 0:
+                return redirect('/')
+
+            else:
+                # Log username and password(hashed) into db and give security code 
+                return redirect('/weather')
 
 
-        elif "login-submit" in request.form:            # Login Post Request
+        # LOGIN POST REQUEST
+        elif "login-submit" in request.form:
             return redirect('/weather')
 
 
