@@ -158,11 +158,6 @@ regForm.addEventListener('submit', (event) => {
         alert('Must enter password');
         event.preventDefault();
     }
-
-    if (checkPassMatch() && regUser.value && regPass.value) {
-        // Alert successful registration
-        alert('You have successfully registered!')
-    }
 });
 
 
