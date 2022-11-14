@@ -38,24 +38,23 @@ def index():
     # User routes via POST 
     if request.method == 'POST':
 
-        if "register-submit" in request.form:
+        if "register-submit" in request.form:           # Register Post Request
             return redirect('/weather')
 
-        elif "login-submit" in request.form:
+
+        elif "login-submit" in request.form:            # Login Post Request
             return redirect('/weather')
+
 
     # User routes via GET
     else:
         return render_template('index.html')
 
 
-@app.route('/weather', methods=['GET', 'POST'])
+@app.route('/weather')
 #@login_required
 def weather():
 
     if request.method == 'GET':
-
         return render_template('weather.html')
 
-    else:
-        return render_template('weather.html')
