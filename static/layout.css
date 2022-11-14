@@ -16,6 +16,10 @@
     transform: scale(1.1);
 }
 
+.navbar-brand:active {
+    transform: translateY(0px);
+}
+
 span {
     font-size: 30px;
     font-family: 'Product Sans', sans-serif;
