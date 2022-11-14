@@ -1,5 +1,6 @@
 import os
 import datetime
+import random
 
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
@@ -46,18 +47,37 @@ def index():
 
             # Ensure username is unique in database
             rows = db.execute("SELECT * FROM users WHERE username = ?", username)
+
+            # If username is taken
             if len(rows) != 0:
                 error = "Username already taken!"
                 return render_template('error.html', error=error)
 
+
             else:
                 # Log username and password(hashed) into db and give security code
-                return redirect('/weather')
+                username = request.form.get('Username')
+                password = request.form.get('Password')
+
+                # Generate hash for password storage in db
+                hash = generate_password_hash(password)
+
+                # Generate random 4 digit security code if user forgets password
+                security_code = random.randint(1000,9999)
+
+                db.execute("INSERT INTO users (username, hash, security_code) VALUES (?, ?, ?)", username, hash, security_code)
+
+                # Create session id and login user 
+                rows = db.execute("SELECT * FROM users WHERE username = ?", username)
+
+                session['user_id'] = rows[0]['id']
+
+                return redirect('/first')
 
 
         # LOGIN POST REQUEST
         elif "login-submit" in request.form:
-            return redirect('/weather')
+            return render_template('weather.html')
 
 
     # User routes via GET
