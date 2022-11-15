@@ -72,7 +72,7 @@ def index():
 
                 session['user_id'] = rows[0]['id']
 
-                return redirect('/first')
+                return render_template('weather.html', username=username)
 
 
         # LOGIN POST REQUEST
