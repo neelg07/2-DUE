@@ -239,20 +239,24 @@ button.close-register:active {
 #monthly-drop,
 #yearly-drop,
 #weather-drop,
-#logout {
+#logout,
+#my-account {
     font-size: 15px;
     font-weight: 500;
+    opacity: 80%;
 }
 
 #daily-drop:hover,
 #monthly-drop:hover,
 #yearly-drop:hover,
 #weather-drop:hover,
-#logout:hover {
+#logout:hover,
+#my-account:hover {
 
     transform: translateY(-3px);
     transform: scale(1.1);
     border: 1px solid black;
+    opacity: 100%;
 }
 
 #daily-drop {
@@ -273,6 +277,10 @@ button.close-register:active {
 
 #logout {
     background-color:#929292;
+}
+
+#my-account {
+    background-color: violet;
 }
 
 .dropdown-menu {
