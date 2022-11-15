@@ -228,3 +228,9 @@ button.close-register:active {
 
 
 /* Weather.html */
+.weather-header {
+    color: #F4B400;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    font-size: 40px;
+    margin-left: 55px;
+}

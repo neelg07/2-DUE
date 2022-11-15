@@ -6,9 +6,22 @@
 
 {% block nav %}
     <a class="navbar-brand" href="/weather"><span class="blue">2</span><span class="red dash">-</span><span class="yellow">D</span><span class="green">U</span><span class="red">E</span></a>
-    <div class="login">
-        <h2>Welcome, {{ username }}!</h2>
+    <h2 class="weather-header"><em>Due Weather</em></h2>
+
+    <div class="login btn-group">
+        <button type="button" class="btn btn-danger">Welcome, {{ username }} !</button>
+        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="visually-hidden">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#" class="dropdown-item">TODO</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a href="#" class="dropdown-item">TODO</a></li>
+            <li><a href="#" class="dropdown-item">TODO</a></li>
+            <li><a href="#" class="dropdown-item">TODO</a></li>
+        </ul>
     </div>
+
 {% endblock %}
 
 {% block main %}
