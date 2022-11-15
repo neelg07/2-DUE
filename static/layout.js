@@ -65,7 +65,7 @@ closeReg.addEventListener('click', () => {
 
 // Sign up info verification
 function checkRegUser() {
-    if (regUser.value.length <= 3 || regUser.value.length >= 18) {
+    if (regUser.value.length <= 3 || regUser.value.length > 19) {
         return false;
     } else {
         return true;
@@ -73,7 +73,7 @@ function checkRegUser() {
 };
 
 function checkRegPass() {
-    if (regPass.value.length <= 3 || regPass.value.length >= 18) {
+    if (regPass.value.length <= 3 || regPass.value.length > 19) {
         return false;
     } else {
         return true;
