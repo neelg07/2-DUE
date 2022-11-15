@@ -232,5 +232,55 @@ button.close-register:active {
     color: #F4B400;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
     font-size: 40px;
-    margin-left: 55px;
+    margin-left: 75px;
+}
+
+#daily-drop,
+#monthly-drop,
+#yearly-drop,
+#weather-drop,
+#logout {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+#daily-drop:hover,
+#monthly-drop:hover,
+#yearly-drop:hover,
+#weather-drop:hover,
+#logout:hover {
+
+    transform: translateY(-3px);
+    transform: scale(1.1);
+    border: 1px solid black;
+}
+
+#daily-drop {
+    background-color: #0F9D58;
+}
+
+#monthly-drop {
+    background-color: #F4B400;;
+}
+
+#yearly-drop {
+    background-color: #DB4437;
+}
+
+#weather-drop {
+    background-color: #4285F4;
+}
+
+#logout {
+    background-color:#929292;
+}
+
+.dropdown-menu {
+    background-color: #dadada;
+    border: 1px solid black;
+}
+
+#menu-btn {
+    width: 170px;
+    font-size: 20px;
 }
