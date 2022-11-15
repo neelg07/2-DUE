@@ -75,9 +75,31 @@ def index():
                 return render_template('weather.html', username=username)
 
 
+
         # LOGIN POST REQUEST
         elif "login-submit" in request.form:
-            return render_template('weather.html')
+
+            # Forget any user_id 
+            session.clear()
+
+            # Save login form entries into variables
+            username = request.form.get('username')
+            password = request.form.get('password')
+
+            # Search database for matching entries
+            rows = db.execute("SELECT * FROM users WHERE username = ?", username)
+            
+            # Return error if username or password incorrect
+            if len(rows) != 1 or not check_password_hash(rows[0]['hash'], password):
+                error = 'Invalid Username and/or Password!'
+                return render_template('error.html', error=error)
+
+
+            # Remember user session if valid login attempt
+            session['user_id'] = rows[0]['id']
+
+            # Redirect user to homepage
+            return render_template('weather.html', username=username)
 
 
     # User routes via GET
@@ -90,5 +112,7 @@ def index():
 def weather():
 
     if request.method == 'GET':
-        return render_template('weather.html')
+
+        username = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+        return render_template('weather.html', username=username)
 
