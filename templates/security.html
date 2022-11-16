@@ -3,7 +3,7 @@
 {% block security %}
     <div class="login-container">
         <div class="close-login">
-            <button type="button" class="close-login">X</button>
+            <button type="button" class="close close-login">X</button>
         </div>
         <div class="login-header">
             <h3 class="code">Your Security Code Is :</h3>
@@ -12,4 +12,16 @@
             <h6 class="code">*Can also be found in the <a href="#">My Account</a> tab</h6>
         </div>
     </div>
+
+    <script>
+
+        const close = document.querySelector('.close')
+        const popup = document.querySelector('.login-container')
+    
+        close.addEventListener('click', () => {
+    
+            popup.classList.add('hide');
+        })
+    
+    </script>
 {% endblock %}
