@@ -72,6 +72,10 @@ def index():
 
                 session['user_id'] = rows[0]['id']
 
+                # Shorten username for menu bar if over 11 chars
+                if len(username) >= 10:
+                    username = f'{username[0:7]}...'
+
                 return render_template('security.html', code=security_code, username=username)
 
                 return render_template('weather.html', username=username)
@@ -100,7 +104,10 @@ def index():
             # Remember user session if valid login attempt
             session['user_id'] = rows[0]['id']
 
-            # Redirect user to homepage
+            # Redirect user to homepage // shorten username if necessary
+            if len(username) >= 10:
+                    username = f'{username[0:7]}...'
+
             return render_template('weather.html', username=username)
 
 
@@ -116,5 +123,10 @@ def weather():
     if request.method == 'GET':
 
         username = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+
+        # Shorten username if needed
+        if len(username) >= 10:
+                    username = f'{username[0:7]}...'
+
         return render_template('weather.html', username=username)
 
