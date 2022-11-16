@@ -154,3 +154,48 @@ def logout():
 
     #Redirect user to login form
     return redirect('/')
+
+
+
+@app.route('/daily')
+#@login_required
+def daily():
+
+    # GET request
+    if request.method == "GET":
+
+        # Pull info from db for menu
+        id = session['user_id']
+        username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
+
+        return render_template('daily.html', username=username)
+
+
+
+@app.route('/monthly')
+#@login_required
+def monthly():
+
+    # GET request
+    if request.method == "GET":
+
+        # Pull info from db for menu
+        id = session['user_id']
+        username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
+
+        return render_template('monthly.html', username=username)
+
+
+
+@app.route('/yearly')
+#@login_required
+def yearly():
+
+    # GET request
+    if request.method == "GET":
+
+        # Pull info from db for menu
+        id = session['user_id']
+        username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
+
+        return render_template('yearly.html', username=username)
