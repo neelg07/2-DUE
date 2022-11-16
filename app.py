@@ -42,7 +42,7 @@ def index():
         # REGISTER POST REQUEST
         if "register-submit" in request.form:
             
-            username = request.form.get('Username')
+            username = request.form.get('Username').rstrip()
 
 
             # Ensure username is unique in database
@@ -56,7 +56,7 @@ def index():
 
             else:
                 # Log username and password(hashed) into db and give security code
-                username = request.form.get('Username')
+                username = request.form.get('Username').rstrip()
                 password = request.form.get('Password')
 
                 # Generate hash for password storage in db
@@ -87,7 +87,7 @@ def index():
             session.clear()
 
             # Save login form entries into variables
-            username = request.form.get('username')
+            username = request.form.get('username').rstrip()
             password = request.form.get('password')
 
             # Search database for matching entries
