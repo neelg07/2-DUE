@@ -72,6 +72,8 @@ def index():
 
                 session['user_id'] = rows[0]['id']
 
+                return render_template('security.html', code=security_code, username=username)
+
                 return render_template('weather.html', username=username)
 
 

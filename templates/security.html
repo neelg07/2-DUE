@@ -1,0 +1,15 @@
+{% extends 'weather.html' %}
+
+{% block security %}
+    <div class="login-container">
+        <div class="close-login">
+            <button type="button" class="close-login">X</button>
+        </div>
+        <div class="login-header">
+            <h3 class="code">Your Security Code Is :</h3>
+            <h1 class="code">{{ code }}</h1>
+            <h5 class="code">Remember it or write this down incase you ever forget your login info!</h5>
+            <h6 class="code">*Can also be found in the <a href="#">My Account</a> tab</h6>
+        </div>
+    </div>
+{% endblock %}

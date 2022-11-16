@@ -292,3 +292,21 @@ button.close-register:active {
     width: 170px;
     font-size: 20px;
 }
+
+/* Security.html */ 
+
+.code {
+    text-align: center;
+}
+
+h1.code {
+    margin-bottom: 70px;
+}
+
+h5.code {
+    text-align: left;
+}
+
+h6.code {
+    text-align: right;
+}
