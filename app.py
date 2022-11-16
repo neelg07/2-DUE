@@ -78,8 +78,6 @@ def index():
 
                 return render_template('security.html', code=security_code, username=username)
 
-                return render_template('weather.html', username=username)
-
 
 
         # LOGIN POST REQUEST
@@ -106,7 +104,7 @@ def index():
 
             # Redirect user to homepage // shorten username if necessary
             if len(username) >= 10:
-                    username = f'{username[0:7]}...'
+                username = f'{username[0:7]}...'
 
             return render_template('weather.html', username=username)
 
@@ -114,6 +112,7 @@ def index():
     # User routes via GET
     else:
         return render_template('index.html')
+
 
 
 @app.route('/weather')
