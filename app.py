@@ -144,3 +144,13 @@ def account():
 
         return render_template('account.html', username=username)
 
+
+
+@app.route('/logout')
+def logout():
+
+    # Forget any user_id
+    session.clear()
+
+    #Redirect user to login form
+    return redirect('/')
