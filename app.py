@@ -129,3 +129,18 @@ def weather():
 
         return render_template('weather.html', username=username)
 
+
+
+@app.route('/account')
+#@login_required
+def account():
+
+    # GET request 
+    if request.method == 'GET': 
+
+        # Pull info from db for menu bar
+        id = session['user_id']
+        username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
+
+        return render_template('account.html', username=username)
+
