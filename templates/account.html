@@ -22,5 +22,19 @@
 {% endblock %}
 
 {% block main %}
-    Account To-Do
+
+    <div class="account-header">
+        <div class="welcome">
+            <h1 class="yellow">2-DUE PROFILE</h1>
+            <div class="account">
+                <p class="acc-user">Username: </p>
+                <input class="form-control mx-auto w-auto" id="user" name="user" placeholder='{{ username }}' type="text" readonly>
+            </div>
+            <div class="account">
+                <p class="acc-user">Security Code: </p>
+                <input class="form-control mx-auto w-auto" id="pass" name="pass" placeholder='{{ code }}' type="text" readonly>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

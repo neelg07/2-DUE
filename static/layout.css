@@ -54,7 +54,8 @@ span {
 
 /* Index.html stylesheet */
 
-.index-header {
+.index-header,
+.account-header {
     border: 1px solid black;
     border-radius: 10px;
     margin-top: 35px;
@@ -325,4 +326,25 @@ h5.code {
 
 h6.code {
     text-align: right;
+}
+
+/* Account.html */
+
+.account {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    gap: 40px;
+}
+
+.acc-user {
+    font-size: 1.2rem;
+    font-weight: normal;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: gray;
+    border: gray;
+    margin-right: 10px;
+    margin-top: 10px;
 }

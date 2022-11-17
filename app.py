@@ -141,8 +141,9 @@ def account():
         # Pull info from db for menu bar
         id = session['user_id']
         username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
+        code = db.execute("SELECT security_code FROM users WHERE id = ?", id)[0]['security_code']
 
-        return render_template('account.html', username=username)
+        return render_template('account.html', username=username, code=code)
 
 
 
