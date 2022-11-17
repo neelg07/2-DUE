@@ -27,6 +27,7 @@
 
 {% block main %}
 
+    <!-- Main profile tab -->
     <div class="account-header">
         <div class="welcome">
             <h1 class="yellow">2-DUE PROFILE</h1>
@@ -47,5 +48,25 @@
             </div>
         </div>
     </div>
+
+    <!-- Change Username Popup -->
+    <div class="register-container">
+        <div class="close-register">
+            <button class="close-register" type="button">X</button>
+        </div>
+        <div class="register-header">
+            <h1>Change Username</h1>
+        </div>
+        <div class="register-content">
+            <form action="/" class="register-form" method="post">
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="new-user" name="new-user" type="text" placeholder="New Username">
+                </div>
+                <button class="btn btn-primary" id="change-user" name="change-user" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Change Password Popup-->
 
 {% endblock %}

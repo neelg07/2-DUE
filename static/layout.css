@@ -362,3 +362,12 @@ h6.code {
     margin-top: 25px;
     width: 185px;
 }
+
+/* Change User Popup */
+
+#change-user {
+    width: 200px;
+    height: 50px;
+    margin-top: 30px;
+    font-size: x-large;
+}
