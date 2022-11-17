@@ -348,3 +348,17 @@ h6.code {
     margin-right: 10px;
     margin-top: 10px;
 }
+
+.delete-account {
+    width: 100%;
+}
+
+.delete-account:hover {
+    transform: scale(1.1);
+}
+
+.change-user,
+.change-pass {
+    margin-top: 25px;
+    width: 185px;
+}

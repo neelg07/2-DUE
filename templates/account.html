@@ -1,5 +1,9 @@
 {% extends 'layout.html' %}
 
+{% block script %}
+    <script src="#" defer></script>
+{% endblock %}
+
 {% block nav %}
     <a class="navbar-brand" href="/weather"><span class="blue">2</span><span class="red dash">-</span><span class="yellow">D</span><span class="green">U</span><span class="red">E</span></a>
     <h2 class="weather-header"><em>MY ACCOUNT</em></h2>
@@ -33,6 +37,13 @@
             <div class="account">
                 <p class="acc-user">Security Code: </p>
                 <input class="form-control mx-auto w-auto" id="pass" name="pass" placeholder='{{ code }}' type="text" readonly>
+            </div>
+            <div class="account">
+                <button type="button" class="btn btn-primary change-user">Change Username</button>
+                <button type="button" class="btn btn-primary change-pass">Change Password</button>
+            </div>
+            <div class="account">
+                <button type="button" class="btn btn-danger delete-account">DELETE ACCOUNT</button>
             </div>
         </div>
     </div>
