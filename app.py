@@ -146,6 +146,15 @@ def account():
         return render_template('account.html', username=username, code=code)
 
 
+"""
+    # POST request
+    else:
+
+        # Change Username Post
+        if 'change-user' in request.form:
+"""
+
+
 
 @app.route('/logout')
 def logout():

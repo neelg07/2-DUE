@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block script %}
-    <script src="#" defer></script>
+    <script src="/static/account.js" defer></script>
 {% endblock %}
 
 {% block nav %}
@@ -50,7 +50,7 @@
     </div>
 
     <!-- Change Username Popup -->
-    <div class="register-container">
+    <div class="register-container username-pop hide">
         <div class="close-register">
             <button class="close-register" type="button">X</button>
         </div>
@@ -58,15 +58,34 @@
             <h1>Change Username</h1>
         </div>
         <div class="register-content">
-            <form action="/" class="register-form" method="post">
+            <form action="/account" class="register-form" method="post">
                 <div class="mb-3">
                     <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="new-user" name="new-user" type="text" placeholder="New Username">
                 </div>
-                <button class="btn btn-primary" id="change-user" name="change-user" type="submit">Submit</button>
+                <button class="btn btn-primary change-user" id="change-user" name="change-user" type="submit">Submit</button>
             </form>
         </div>
     </div>
 
     <!-- Change Password Popup-->
+    <div class="register-container password-pop hide">
+        <div class="close-register">
+            <button class="close-register" type="button">X</button>
+        </div>
+        <div class="register-header">
+            <h1>Change Password</h1>
+        </div>
+        <div class="register-content">
+            <form action="/account" class="register-form" method="post">
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="new-pass" name="new-pass" type="text" placeholder="New Password">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="confirm-new-pass" name="confirm-new-pass" type="text" placeholder="Confirm Password">
+                </div>
+                <button class="btn btn-primary" id="change-pass" name="change-pass" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

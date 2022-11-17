@@ -52,6 +52,10 @@ span {
     align-items: center;
 }
 
+.container-fluid {
+    min-width: 763px;
+}
+
 /* Index.html stylesheet */
 
 .index-header,
@@ -67,7 +71,7 @@ span {
     flex-flow: column;
     align-items: center;
     width: 35%;
-    min-width: 350px;
+    min-width: 433px;
 }
 
 .welcome {
@@ -365,7 +369,8 @@ h6.code {
 
 /* Change User Popup */
 
-#change-user {
+#change-user,
+#change-pass {
     width: 200px;
     height: 50px;
     margin-top: 30px;
