@@ -215,6 +215,10 @@ button.close-register:active {
     margin-left: auto;
 }
 
+#forgot-code {
+    width: 100%;
+}
+
 .show-pass,
 .reg-show-pass {
     margin-left: 150px;

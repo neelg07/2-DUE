@@ -78,16 +78,16 @@
         <div class="close-register">
             <button class="close-register close-forgot" type="button">X</button>
         </div>
-        <div class="delete-header">
+        <div class="forgot-header">
             <h1><u>Forgot Your Password?</u></h1>
         </div>
         <div class="register-content">
             <form action="/" class="register-form" method="post">
                 <div class="mb-3">
-                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="forgot-code" name="forgot-code" type="number" placeholder="Security Code">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="forgot-code" name="forgot-code" type="number" min='0000' max='9999' placeholder="Code">
                     <p class="code-text">*Enter your account's 4-digit security code*</p>
                 </div>
-                <button class="btn btn-primary" id="forgot-pass" name="forgot-pass" type="submit">Submit</button>
+                <button class="btn btn-primary" id="forgot-password" name="forgot-password" type="submit">Submit</button>
             </form>
         </div>
     </div>

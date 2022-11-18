@@ -181,3 +181,27 @@ regPassCheck.addEventListener('click', () => {
         regConfirm.type = 'password';
     }
 });
+
+
+// Forgot Password Popup Logic
+
+const forgotPop = document.querySelector('.forgot-pop');
+const closeForgot = document.querySelector('.close-forgot');
+const forgotPass = document.querySelector('.forgot-pass');
+const codeInput = document.getElementById('forgot-code');
+
+
+forgotPass.addEventListener('click', () => {
+
+    forgotPop.classList.remove('hide');
+    closeLogin.click();
+    indexHeader.classList.add('blur');
+    codeInput.focus();
+});
+
+closeForgot.addEventListener('click', () => {
+
+    forgotPop.classList.add('hide');
+    indexHeader.classList.remove('blur');
+    codeInput.value = '';
+});
