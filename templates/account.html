@@ -89,4 +89,23 @@
         </div>
     </div>
 
+    <!-- Delete Account Popup -->
+    <div class="register-container delete-pop">
+        <div class="close-register">
+            <button class="close-register" type="button">X</button>
+        </div>
+        <div class="delete-header">
+            <h1><u>WARNING!!!</u></h1>
+            <h5 class="delete-text">This action will permanently delete your account and all information that goes along with it! Are you sure you want to delete forever?</h4>
+        </div>
+        <div class="register-content">
+            <form action="/account" class="register-form" method="post">
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto delete-text" id="delete-text" name="delete-text" type="text" placeholder="DELETE">
+                    <p>*Type 'DELETE' and submit to confirm*</p>
+                </div>
+                <button class="btn btn-primary" id="delete-account" name="delete-account" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

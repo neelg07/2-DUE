@@ -376,3 +376,45 @@ h6.code {
     margin-top: 30px;
     font-size: x-large;
 }
+
+.delete-header {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.delete-text {
+    text-align: start;
+    line-height: 1.8rem;
+    margin-top: 5px;
+}
+
+.delete-pop {
+    border: 5px solid red;
+}
+
+.delete-text {
+    margin-bottom: 7px;
+}
+
+.delete-text:focus {
+    border: red;
+    box-shadow: 0 0 0 0.25rem rgb(255, 0, 0, 0.4);
+}
+
+.delete-text:hover {
+    border: 1px solid red;
+}
+
+#delete-account {
+    width: 200px;
+    height: 50px;
+    font-size: x-large; 
+    font-weight: bolder;
+}
+
+#delete-account:hover {
+    background-color: #DB4437;
+    border: 1px solid red;
+}
