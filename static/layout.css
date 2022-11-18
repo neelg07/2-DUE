@@ -127,6 +127,10 @@ span h1 {
     margin-left: 5px;
 }
 
+.code-text {
+    margin-top: 10px;
+}
+
 /* Login Pop Up */
 
 .login-container,

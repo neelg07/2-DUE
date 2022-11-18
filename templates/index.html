@@ -71,4 +71,24 @@
             </form>
         </div>
     </div>
+
+
+    <!-- Forgot Password Popup -->
+    <div class="register-container forgot-pop">
+        <div class="close-register">
+            <button class="close-register close-forgot" type="button">X</button>
+        </div>
+        <div class="delete-header">
+            <h1><u>Forgot Your Password?</u></h1>
+        </div>
+        <div class="register-content">
+            <form action="/" class="register-form" method="post">
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="forgot-code" name="forgot-code" type="number" placeholder="Security Code">
+                    <p class="code-text">*Enter your account's 4-digit security code*</p>
+                </div>
+                <button class="btn btn-primary" id="forgot-pass" name="forgot-pass" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
