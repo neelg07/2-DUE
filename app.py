@@ -166,6 +166,13 @@ def account():
 
             return redirect('/account')
 
+        # Delete Account Post
+        elif 'delete-account' in request.form:
+
+            db.execute("DELETE FROM users WHERE id = ?", session['user_id'])
+            
+            return redirect('/logout')
+
 
 
 @app.route('/logout')
