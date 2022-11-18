@@ -131,7 +131,7 @@ def weather():
 
 
 
-@app.route('/account')
+@app.route('/account', methods=['GET', 'POST'])
 #@login_required
 def account():
 
@@ -146,9 +146,8 @@ def account():
         return render_template('account.html', username=username, code=code)
 
 
-
     # POST request
-    else:
+    elif request.method == 'POST':
 
         # Change Username Post
         if 'change-user' in request.form:
@@ -166,6 +165,7 @@ def account():
             db.execute("UPDATE users SET hash = (?) WHERE id = (?)", hash, session['user_id'])
 
             return redirect('/account')
+
 
 
 @app.route('/logout')

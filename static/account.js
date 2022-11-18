@@ -46,13 +46,11 @@ const submitUser = document.getElementById('change-user');
 
 submitUser.addEventListener('click', (event) => {
 
-    if (newUser.value.length < 3) {
-        alert('Username must be >= 3 characters!');
+    if (newUser.value.length < 3 || newUser.value.length > 18) {
+        alert('Username must be between 3 and 18 characters!');
         event.preventDefault();
-    }
-    if (newUser.value.length > 18) {
-        alert('Username must be <= 18 characters!');
-        event.preventDefault();
+    } else {
+        alert('Username Changed Successfully')
     }
 });
 
@@ -100,14 +98,18 @@ submitPass.addEventListener('click', (event) => {
     if (newPass.value !== confirmPass.value) {
         alert('Passwords Must Match!');
         event.preventDefault();
+        return;
     }
     if (newPass.value === '') {
         alert('Must enter a new password !');
         event.preventDefault();
+        return;
     }
     if (newPass.value.length < 3 || newPass.value.length > 18) {
         alert('Password length must be between 3 and 18 characters!');
         event.preventDefault();
+    } else {
+        alert('Password Changed Successfully')
     }
 });
 
