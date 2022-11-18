@@ -146,14 +146,26 @@ def account():
         return render_template('account.html', username=username, code=code)
 
 
-"""
+
     # POST request
     else:
 
         # Change Username Post
         if 'change-user' in request.form:
-"""
+            
+            new_user = request.form.get('new-user')
+            db.execute("UPDATE users SET username = (?) WHERE id = (?)", new_user, session['user_id'])
 
+            return redirect('/account')
+
+        # Change Password Post 
+        elif 'change-pass' in request.form:
+
+            password = request.form.get('new-pass')
+            hash = generate_password_hash(password)
+            db.execute("UPDATE users SET hash = (?) WHERE id = (?)", hash, session['user_id'])
+
+            return redirect('/account')
 
 
 @app.route('/logout')
