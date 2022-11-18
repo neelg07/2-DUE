@@ -49,6 +49,7 @@ const passBtn = document.querySelector('.change-pass');
 const closePass = document.querySelector('.close-pass');
 const newPass = document.getElementById('new-pass');
 const confirmPass = document.getElementById('confirm-new-pass');
+const showPass = document.querySelector('.show-pass');
 
 
 passBtn.addEventListener('click', () => {
@@ -64,6 +65,17 @@ closePass.addEventListener('click', () => {
     enableButtons();
     newPass.value = '';
     confirmPass.value = '';
+});
+
+showPass.addEventListener('click', () => {
+
+    if (showPass.checked === true) {
+        newPass.type = 'text';
+        confirmPass.type = 'text';
+    } else {
+        newPass.type = 'password';
+        confirmPass.type = 'password';
+    }
 });
 
 // Delete Account 
