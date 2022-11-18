@@ -42,6 +42,19 @@ closeUser.addEventListener('click', () => {
 });
 
 
+const submitUser = document.getElementById('change-user');
+
+submitUser.addEventListener('click', (event) => {
+
+    if (newUser.value.length < 3) {
+        alert('Username must be >= 3 characters!');
+        event.preventDefault();
+    }
+    if (newUser.value.length > 18) {
+        alert('Username must be <= 18 characters!');
+        event.preventDefault();
+    }
+});
 
 // Change Password Popup
 const passPop = document.querySelector('.password-pop');
@@ -75,6 +88,26 @@ showPass.addEventListener('click', () => {
     } else {
         newPass.type = 'password';
         confirmPass.type = 'password';
+    }
+});
+
+
+const submitPass = document.getElementById('change-pass');
+
+
+submitPass.addEventListener('click', (event) => {
+
+    if (newPass.value !== confirmPass.value) {
+        alert('Passwords Must Match!');
+        event.preventDefault();
+    }
+    if (newPass.value === '') {
+        alert('Must enter a new password !');
+        event.preventDefault();
+    }
+    if (newPass.value.length < 3 || newPass.value.length > 18) {
+        alert('Password length must be between 3 and 18 characters!');
+        event.preventDefault();
     }
 });
 
