@@ -394,16 +394,16 @@ h6.code {
     border: 5px solid red;
 }
 
-.delete-text {
+.del-text {
     margin-bottom: 7px;
 }
 
-.delete-text:focus {
+.del-text:focus {
     border: red;
     box-shadow: 0 0 0 0.25rem rgb(255, 0, 0, 0.4);
 }
 
-.delete-text:hover {
+.del-text:hover {
     border: 1px solid red;
 }
 

@@ -90,9 +90,9 @@
     </div>
 
     <!-- Delete Account Popup -->
-    <div class="register-container delete-pop">
+    <div class="register-container delete-pop hide">
         <div class="close-register">
-            <button class="close-register" type="button">X</button>
+            <button class="close-register close-delete" type="button">X</button>
         </div>
         <div class="delete-header">
             <h1><u>WARNING!!!</u></h1>
@@ -101,7 +101,7 @@
         <div class="register-content">
             <form action="/account" class="register-form" method="post">
                 <div class="mb-3">
-                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto delete-text" id="delete-text" name="delete-text" type="text" placeholder="DELETE">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto del-text" id="del-text" name="delete-text" type="text" placeholder="DELETE">
                     <p>*Type 'DELETE' and submit to confirm*</p>
                 </div>
                 <button class="btn btn-primary" id="delete-account" name="delete-account" type="submit">Submit</button>
