@@ -115,18 +115,28 @@ def index():
 
             # Check if code is same as code stored in user db
             code_input = request.form.get('forgot-code')
+            user_input = request.form.get('forgot-user')
 
-            security_code = db.execute("SELECT * FROM users WHERE security_code = ?", code_input)
+            rows = db.execute("SELECT * FROM users WHERE username = (?) AND security_code = (?)", user_input, code_input)
 
             # Code does not match
-            if len(security_code) == 0: 
-                error = 'Code not recognized!'
+            if len(rows) != 1: 
+                error = 'Invalid Username or Code!'
                 return render_template('error.html', error=error)
 
-            # Code match / allow password change
+            # Code/username match / check if passwords match
+            elif request.form.get('pass-reset') != request.form.get('verify-pass-reset'):
+                error = 'Passwords do not match!'
+                return render_template('error.html', error=error)
+
+            # Everything works out / change password / update db
             else:
                 password = request.form.get('pass-reset')
                 hash = generate_password_hash(password)
+                
+                db.execute("UPDATE users SET hash = (?) WHERE username = (?)", hash, user_input)
+
+                return redirect('/')
                 
                 
 
