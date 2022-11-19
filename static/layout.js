@@ -206,3 +206,24 @@ closeForgot.addEventListener('click', () => {
     indexHeader.classList.remove('blur');
     codeInput.value = '';
 });
+
+
+// Forgot Password Show Password Checkbox
+const resetPassShow = document.querySelector('.reset-show-pass');
+const resetNewPass = document.getElementById('pass-reset');
+const resetNewConfirm = document.getElementById('verify-pass-reset');
+const resetSubmit = document.getElementById('forgot-password');
+
+
+resetPassShow.addEventListener('click', () => {
+
+    if (resetPassShow.checked === true) {
+
+        resetNewPass.type = 'text';
+        resetNewConfirm.type = 'text';
+    } else {
+
+        resetNewPass.type = 'password';
+        resetNewConfirm.type = 'password';
+    }
+});
