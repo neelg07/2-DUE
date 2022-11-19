@@ -205,6 +205,10 @@ closeForgot.addEventListener('click', () => {
     forgotPop.classList.add('hide');
     indexHeader.classList.remove('blur');
     codeInput.value = '';
+    forgotUser.value = '';
+    resetNewPass.value = '';
+    resetNewConfirm.value = '';
+    resetPassShow.checked = false;
 });
 
 
