@@ -121,11 +121,11 @@ def index():
 
             # Code does not match
             if len(rows) != 1: 
-                error = 'Invalid Username or Code!'
+                error = 'Invalid Username or Security Code!'
                 return render_template('error.html', error=error)
 
             # Code/username match / check if passwords match
-            elif request.form.get('pass-reset') != request.form.get('verify-pass-reset'):
+            if request.form.get('pass-reset') != request.form.get('verify-pass-reset'):
                 error = 'Passwords do not match!'
                 return render_template('error.html', error=error)
 

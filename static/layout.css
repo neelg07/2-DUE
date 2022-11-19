@@ -225,6 +225,13 @@ button.close-register:active {
     margin-top: 10px;
 }
 
+.forgot-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #forgot-code {
     width: 100%;
 }

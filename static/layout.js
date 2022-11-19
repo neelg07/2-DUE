@@ -216,7 +216,7 @@ closeForgot.addEventListener('click', () => {
 const resetPassShow = document.querySelector('.reset-show-pass');
 const resetNewPass = document.getElementById('pass-reset');
 const resetNewConfirm = document.getElementById('verify-pass-reset');
-const resetSubmit = document.getElementById('forgot-password');
+
 
 
 resetPassShow.addEventListener('click', () => {
@@ -229,5 +229,22 @@ resetPassShow.addEventListener('click', () => {
 
         resetNewPass.type = 'password';
         resetNewConfirm.type = 'password';
+    }
+});
+
+
+const resetSubmit = document.querySelector('.forgot-form');
+
+resetSubmit.addEventListener('submit', (event) => {
+
+    if (resetNewPass.value === '') {
+        alert('Must input a password!');
+        event.preventDefault();
+        return;
+    }
+    if (resetNewPass.value.length < 3 || resetNewPass.value.length > 18) {
+        alert('Password must be between 3 and 18 characters!');
+        event.preventDefault();
+        return;
     }
 });
