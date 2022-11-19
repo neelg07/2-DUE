@@ -189,6 +189,7 @@ const forgotPop = document.querySelector('.forgot-pop');
 const closeForgot = document.querySelector('.close-forgot');
 const forgotPass = document.querySelector('.forgot-pass');
 const codeInput = document.getElementById('forgot-code');
+const forgotUser = document.getElementById('forgot-user');
 
 
 forgotPass.addEventListener('click', () => {
@@ -196,7 +197,7 @@ forgotPass.addEventListener('click', () => {
     forgotPop.classList.remove('hide');
     closeLogin.click();
     indexHeader.classList.add('blur');
-    codeInput.focus();
+    forgotUser.focus();
 });
 
 closeForgot.addEventListener('click', () => {

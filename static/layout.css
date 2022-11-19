@@ -215,12 +215,23 @@ button.close-register:active {
     margin-left: auto;
 }
 
+.forgot-div {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.pass-div {
+    margin-top: 10px;
+}
+
 #forgot-code {
     width: 100%;
 }
 
 .show-pass,
-.reg-show-pass {
+.reg-show-pass,
+.reset-show-pass {
     margin-left: 150px;
 }
 

@@ -109,6 +109,29 @@ def index():
             return render_template('weather.html', username=username)
 
 
+
+        # Forgot Password POST Request
+        elif 'forgot-password' in request.form:
+
+            # Check if code is same as code stored in user db
+            code_input = request.form.get('forgot-code')
+
+            security_code = db.execute("SELECT * FROM users WHERE security_code = ?", code_input)
+
+            # Code does not match
+            if len(security_code) == 0: 
+                error = 'Code not recognized!'
+                return render_template('error.html', error=error)
+
+            # Code match / allow password change
+            else:
+                password = request.form.get('pass-reset')
+                hash = generate_password_hash(password)
+                
+                
+
+
+
     # User routes via GET
     else:
         return render_template('index.html')
@@ -170,7 +193,7 @@ def account():
         elif 'delete-account' in request.form:
 
             db.execute("DELETE FROM users WHERE id = ?", session['user_id'])
-            
+
             return redirect('/logout')
 
 

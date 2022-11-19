@@ -74,7 +74,7 @@
 
 
     <!-- Forgot Password Popup -->
-    <div class="register-container forgot-pop">
+    <div class="register-container forgot-pop hide">
         <div class="close-register">
             <button class="close-register close-forgot" type="button">X</button>
         </div>
@@ -83,9 +83,19 @@
         </div>
         <div class="register-content">
             <form action="/" class="register-form" method="post">
+                <div class="mb-3 forgot-div">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="forgot-user" name="forgot-user" type="text" placeholder="Username">
+                    <input autocomplete="off" class="form-control mx-auto w-auto" id="forgot-code" name="forgot-code" type="number" min='0000' max='9999' placeholder="Code">
+                </div>
+                <div>
+                    <p class="code-text">*Enter your account's username and 4-digit security code*</p>
+                </div>
+                <div class="mb-3 pass-div">
+                    <input type="password" class="form-control mx-auto w-auto" id="pass-reset" name="pass-reset" placeholder="New Password">
+                </div>
                 <div class="mb-3">
-                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="forgot-code" name="forgot-code" type="number" min='0000' max='9999' placeholder="Code">
-                    <p class="code-text">*Enter your account's 4-digit security code*</p>
+                    <input type="password" class="form-control mx-auto w-auto" id="verify-pass-reset" name="verify-pass-reset" placeholder="Confirm Password">
+                    <input type="checkbox" class="reset-show-pass"> Show
                 </div>
                 <button class="btn btn-primary" id="forgot-password" name="forgot-password" type="submit">Submit</button>
             </form>
