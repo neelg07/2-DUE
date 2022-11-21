@@ -35,10 +35,10 @@
         <div class="login-content">
             <form class='login-form' action="/" method="post">
                 <div class="mb-3">
-                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text" required minlength="3" maxlength="18">
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password">
+                    <input type="password" class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" required minlength="3" maxlength="18">
                     <input type="checkbox" class="show-pass"> Show
                 </div>
                 <button class="btn btn-primary" id="login-submit" name="login-submit" type="submit">Log In</button>
@@ -58,13 +58,13 @@
         <div class="register-content">
             <form action="/" class="register-form" method="post">
                 <div class="mb-3">
-                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="Username" name="Username" type="text" placeholder="Username">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="Username" name="Username" type="text" placeholder="Username" required minlength="3" maxlength="18">
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control mx-auto w-auto" id="Password" name="Password" placeholder="Password">
+                    <input type="password" class="form-control mx-auto w-auto" id="Password" name="Password" placeholder="Password" required minlength="3" maxlength="18">
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control mx-auto w-auto" id="Verify-Pass" name="verify-pass" placeholder="Confirm Password">
+                    <input type="password" class="form-control mx-auto w-auto" id="Verify-Pass" name="verify-pass" placeholder="Confirm Password" required minlength="3" maxlength="18">
                     <input type="checkbox" class="reg-show-pass"> Show
                 </div>
                 <button class="btn btn-primary" id="register-submit" name="register-submit" type="submit">Register</button>
@@ -84,17 +84,17 @@
         <div class="register-content">
             <form action="/" class="forgot-form" method="post">
                 <div class="mb-3 forgot-div">
-                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="forgot-user" name="forgot-user" type="text" placeholder="Username">
-                    <input autocomplete="off" class="form-control mx-auto w-auto" id="forgot-code" name="forgot-code" type="number" min='0000' max='9999' placeholder="Code">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="forgot-user" name="forgot-user" type="text" placeholder="Username" required minlength="3" maxlength="18">
+                    <input autocomplete="off" class="form-control mx-auto w-auto" id="forgot-code" name="forgot-code" type="number" min='0000' max='9999' placeholder="Code" required>
                 </div>
                 <div>
                     <p class="code-text">*Enter your account's username and 4-digit security code*</p>
                 </div>
                 <div class="mb-3 pass-div">
-                    <input type="password" class="form-control mx-auto w-auto" id="pass-reset" name="pass-reset" placeholder="New Password">
+                    <input type="password" class="form-control mx-auto w-auto" id="pass-reset" name="pass-reset" placeholder="New Password" required minlength="3" maxlength="18">
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control mx-auto w-auto" id="verify-pass-reset" name="verify-pass-reset" placeholder="Confirm Password">
+                    <input type="password" class="form-control mx-auto w-auto" id="verify-pass-reset" name="verify-pass-reset" placeholder="Confirm Password" required minlength="3" maxlength="18">
                     <input type="checkbox" class="reset-show-pass"> Show
                 </div>
                 <button class="btn btn-primary" id="forgot-password" name="forgot-password" type="submit">Submit</button>
