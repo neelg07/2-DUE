@@ -3,7 +3,8 @@ import datetime
 import random
 
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, jsonify
+from flask_simple_geoip import SimpleGeoIP
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -21,6 +22,10 @@ Session(app)
 
 # Configure CS50 Library to use SQLite database
 db = SQL('sqlite:///todo.db')
+
+# GeoLocation API 
+app.config.update(GEOIPIFY_API_KEY='at_5YbZtjhPtJLUKvFsTDAaT5GwF4rAM')
+simple_geoip = SimpleGeoIP(app)
 
 
 @app.after_request
@@ -138,13 +143,11 @@ def index():
 
                 return redirect('/')
                 
-                
-
-
 
     # User routes via GET
     else:
         return render_template('index.html')
+
 
 
 
@@ -160,7 +163,12 @@ def weather():
         if len(username) >= 10:
                     username = f'{username[0:7]}...'
 
+
+        # Get geolocation of user for weather
+
+
         return render_template('weather.html', username=username)
+
 
 
 
