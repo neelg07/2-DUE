@@ -27,9 +27,30 @@
 {% endblock %}
 
 {% block main %}
-    To-Do
+    
+<div class="weather-main">
+    <form class="weather-form" action="/weather" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="city-input" name="City" placeholder="City Name" type="text" required> 
+        </div>
+        <button class="btn btn-primary" id="city-submit" name="city-submit" type="submit">Add City</button>
+    </form>
+
+    <ul class="cities">
+        <li>
+            <div class="weather">
+                <div class="close-weather">
+                    <button class="close-weather">X</button>
+                </div>
+                <div class="weather-icon">(icon)</div>
+                <div class="city">Las Vegas</div>
+                <div class="temp"><strong>29 &#176 F</strong></div>
+                <div class="weather-info">thunderstorm with heavy rain</div>
+            </div>
+        </li>
+    </ul>
+</div>
 
     {% block security %}{% endblock %}
-
 
 {% endblock %}

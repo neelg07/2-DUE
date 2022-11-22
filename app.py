@@ -1,6 +1,7 @@
 import os
 import datetime
 import random
+import requests
 
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, jsonify
@@ -26,6 +27,9 @@ db = SQL('sqlite:///todo.db')
 # GeoLocation API 
 app.config.update(GEOIPIFY_API_KEY='at_5YbZtjhPtJLUKvFsTDAaT5GwF4rAM')
 simple_geoip = SimpleGeoIP(app)
+
+# Weather API
+api_key = '83aa04568f1067d6494cb2be34cfb172'
 
 
 @app.after_request
@@ -165,7 +169,7 @@ def weather():
 
 
         # Get geolocation of user for weather
-
+        geoip_data = simple_geoip.get_geoip_data()
 
         return render_template('weather.html', username=username)
 
