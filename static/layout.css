@@ -358,7 +358,9 @@ button.close-register:active {
     padding: 30px;
     line-height: 2rem;
     min-width: 300px;
+    min-height: 190px;
     position: relative;
+    left: 25px;
 }
 
 .close-weather {
@@ -410,6 +412,11 @@ button.close-register:active {
 
 .city {
     font-size: 28px;
+    max-width: 150px;
+}
+
+#city-submit {
+    min-width: 150px;
 }
 
 /* Security.html */ 
