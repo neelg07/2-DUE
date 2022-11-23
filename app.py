@@ -184,16 +184,25 @@ def weather():
         if len(username) >= 10:
             username = f'{username[0:7]}...'
 
-        city = 'Houston'
+        city = request.form.get('City')
 
         weather_data = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=imperial&appid={api_key}')
 
-        weather = weather_data.json()['weather'][0]['main']
-        temp = round(weather_data.json()['main']['temp'])
-        icon = weather_data.json()['weather'][0]['icon']
-        description = weather_data.json()['weather'][0]['description']
+        # Invalid city input
+        if weather_data.json()['cod'] == '404':
+            city = 'Invalid City'
 
-        return render_template('weather.html', username=username, city=city, weather=weather, temp=temp, description=description, icon=icon)
+            return render_template('weather.html', username=username, city=city)
+
+        # Valid city input
+        else:
+            weather = weather_data.json()['weather'][0]['main']
+            temp = round(weather_data.json()['main']['temp'])
+            icon = weather_data.json()['weather'][0]['icon']
+            description = weather_data.json()['weather'][0]['description']
+
+            return render_template('weather.html', username=username, city=city, weather=weather, temp=temp, description=description, icon=icon)
+
 
 
 @app.route('/account', methods=['GET', 'POST'])
