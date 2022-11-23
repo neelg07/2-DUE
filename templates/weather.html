@@ -38,7 +38,11 @@
 
     <ul class="cities">
         <li>
+            {% if city %}
             <div class="weather">
+            {% else %}
+            <div class="weather hide">
+            {% endif %}
                 <div class="close-weather">
                     <button class="close-weather">X</button>
                 </div>
@@ -49,6 +53,7 @@
                 <div class="forecast"><i>Forecast: </i><b>{{ weather }}</b></div>
                 <div class="temp"><i id="temp">Temperature: </i><strong>{{ temp }} &#176 F</strong></div>
                 <div class="weather-info"><i>Description:</i> <b>{{ description }}</b></div>
+            </div>
             </div>
         </li>
     </ul>
