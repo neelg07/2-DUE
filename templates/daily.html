@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block nav %}
-    <a class="navbar-brand" href="/weather"><span class="blue">2</span><span class="red dash">-</span><span class="yellow">D</span><span class="green">U</span><span class="red">E</span></a>
+    <a class="navbar-brand" href="/daily"><span class="blue">2</span><span class="red dash">-</span><span class="yellow">D</span><span class="green">U</span><span class="red">E</span></a>
     <h2 class="weather-header"><em>2-DUE DAILY</em></h2>
 
     <div class="login btn-group">
@@ -22,5 +22,22 @@
 {% endblock %}
 
 {% block main %}
-    Daily To-Do
+
+
+
+    <!-- Add Daily Goals Form -->
+    <form action="/daily" class="daily" method="post">
+        <div class="daily-header">
+            <h3>Set and Achieve Goals By Adding To Your 2-DUE List!</h3>
+        </div>
+        <div class="mb-3 goals">
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="daily" name="daily" placeholder="Set Goal" size="50">
+            <select class="form-select select" name="goal-type" id="goal-type" required >
+                <option value="select" selected disabled>Frequency</option>
+                <option value="today">Today</option>
+                <option value="everyday">Everyday</option>
+            </select>
+            <button class="btn btn-primary" id="daily-submit" name="daily-submit" type="submit">Add</button>
+        </div>
+    </form>
 {% endblock %}
