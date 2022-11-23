@@ -361,6 +361,7 @@ button.close-register:active {
     min-height: 190px;
     position: relative;
     left: 25px;
+    background: radial-gradient(at left bottom, rgb(244, 247, 248), rgb(149, 218, 243), rgb(66, 125, 207));
 }
 
 .close-weather {
@@ -405,7 +406,6 @@ button.close-register:active {
 .temp {
     font-size: 16px;
 }
-
 
 .city {
     font-size: 28px;
