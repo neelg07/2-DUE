@@ -260,7 +260,7 @@ def logout():
 
 
 
-@app.route('/daily')
+@app.route('/daily', methods=['GET', 'POST'])
 #@login_required
 def daily():
 
@@ -272,6 +272,17 @@ def daily():
         username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
 
         return render_template('daily.html', username=username)
+
+    
+    # POST request
+    elif request.method == 'POST':
+
+        task = request.form.get('daily')
+        frequency = request.form.get('goal-type')
+
+        db.execute("INSERT INTO goals (id, task, frequency, completeness) VALUES (?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete')
+
+        return redirect('/daily')
 
 
 
