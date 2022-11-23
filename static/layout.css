@@ -373,7 +373,7 @@ button.close-register:active {
 }
 
 .close-weather:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .close-weather:active {
