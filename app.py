@@ -280,7 +280,7 @@ def daily():
         task = request.form.get('daily')
         frequency = request.form.get('goal-type')
 
-        db.execute("INSERT INTO goals (id, task, frequency, completeness) VALUES (?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete')
+        db.execute("INSERT INTO tasks (id, task, frequency, completeness) VALUES (?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete')
 
         return redirect('/daily')
 
