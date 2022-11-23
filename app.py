@@ -2,6 +2,7 @@ import os
 import datetime
 import random
 import requests
+import json
 
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, jsonify
@@ -24,9 +25,11 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL('sqlite:///todo.db')
 
+'''
 # GeoLocation API 
 app.config.update(GEOIPIFY_API_KEY='at_5YbZtjhPtJLUKvFsTDAaT5GwF4rAM')
 simple_geoip = SimpleGeoIP(app)
+'''
 
 # Weather API
 api_key = '83aa04568f1067d6494cb2be34cfb172'
@@ -155,7 +158,7 @@ def index():
 
 
 
-@app.route('/weather')
+@app.route('/weather', methods=['GET', 'POST'])
 #@login_required
 def weather():
 
@@ -165,15 +168,32 @@ def weather():
 
         # Shorten username if needed
         if len(username) >= 10:
-                    username = f'{username[0:7]}...'
+            username = f'{username[0:7]}...'
 
-
+        '''
         # Get geolocation of user for weather
         geoip_data = simple_geoip.get_geoip_data()
-
+        '''
         return render_template('weather.html', username=username)
 
+    elif request.method == 'POST':
 
+        username = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+
+        # Shorten username if needed
+        if len(username) >= 10:
+            username = f'{username[0:7]}...'
+
+        city = 'Houston'
+
+        weather_data = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=imperial&appid={api_key}')
+
+        weather = weather_data.json()['weather'][0]['main']
+        temp = round(weather_data.json()['main']['temp'])
+        icon = weather_data.json()['weather'][0]['icon']
+        description = weather_data.json()['weather'][0]['description']
+
+        return render_template('weather.html', username=username, city=city, weather=weather, temp=temp, description=description, icon=icon)
 
 
 @app.route('/account', methods=['GET', 'POST'])

@@ -42,14 +42,17 @@
                 <div class="close-weather">
                     <button class="close-weather">X</button>
                 </div>
-                <div class="weather-icon">(icon)</div>
-                <div class="city">Las Vegas</div>
-                <div class="temp"><strong>29 &#176 F</strong></div>
-                <div class="weather-info">thunderstorm with heavy rain</div>
+                <div class="weather-icon">
+                    <img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="Image" width="50px">
+                </div>
+                <div class="city">{{ city }}</div>
+                <div class="forecast"><i>Forecast: </i><b>{{ weather }}</b></div>
+                <div class="temp"><i id="temp">Temperature: </i><strong>{{ temp }} &#176 F</strong></div>
+                <div class="weather-info"><i>Description:</i> <b>{{ description }}</b></div>
             </div>
         </li>
     </ul>
-</div>
+ </div>
 
     {% block security %}{% endblock %}
 

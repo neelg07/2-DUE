@@ -394,8 +394,18 @@ button.close-register:active {
     font-size: 16px;
 }
 
+.weather-icon {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+}
+
 .temp {
     font-size: 20px;
+}
+
+#temp {
+    font-weight: 350;
 }
 
 .city {
