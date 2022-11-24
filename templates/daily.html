@@ -27,8 +27,6 @@
 
 {% block main %}
 
-
-
     <!-- Add Daily Goals Form -->
     <form action="/daily" class="daily" method="post">
         <div class="daily-header">
@@ -44,4 +42,30 @@
             <button class="btn btn-primary" id="daily-submit" name="daily-submit" type="submit">Add</button>
         </div>
     </form>
+
+     <!-- Today's Tasks -->
+     <div class="daily-table">
+        <table class="table table-hovered table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-start task-head">Task</th>
+                    <th class="text-start">Complete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if daily %}
+            {% for row in daily %}
+            <tr>
+                <td class="text-start task">{{ row.task }}</td>
+                {% if row.completeness == 'incomplete' %}
+                <td class="center-td"><input type='checkbox' id='{{ row.id }}' name="{{ row.id }}"></td>
+                {% else %} 
+                <td class="center-td"><input type="checkbox" id="{{ row.id }}" name="{{ row.id }}" checked></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

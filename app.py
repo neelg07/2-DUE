@@ -271,7 +271,10 @@ def daily():
         id = session['user_id']
         username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
 
-        return render_template('daily.html', username=username)
+        daily = db.execute("SELECT * FROM tasks WHERE id = (?) AND frequency = (?)", session['user_id'], 'today') 
+        everyday = db.execute("SELECT * FROM tasks WHERE id = (?) AND frequency = (?)", session['user_id'], 'everyday')
+
+        return render_template('daily.html', username=username, daily=daily, everyday=everyday)
 
     
     # POST request
