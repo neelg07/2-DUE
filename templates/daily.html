@@ -45,16 +45,46 @@
 
      <!-- Today's Tasks -->
      <div class="daily-table">
-        <table class="table table-hovered table-striped table-bordered">
+        <h2 style="text-align: center;">2-DUE TODAY</h2>
+        <table class="table table-hover table-bordered">
+            <caption>My Tasks For Today</caption>
             <thead>
-                <tr>
+                <tr class="table-secondary">
                     <th class="text-start task-head">Task</th>
                     <th class="text-start">Complete</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
             {% if daily %}
             {% for row in daily %}
+            <tr>
+                <td class="text-start task">{{ row.task }}</td>
+                {% if row.completeness == 'incomplete' %}
+                <td class="center-td"><input type='checkbox' id='{{ row.id }}' name="{{ row.id }}"></td>
+                {% else %} 
+                <td class="center-td"><input type="checkbox" id="{{ row.id }}" name="{{ row.id }}" checked></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Everyday Tasks -->
+    <div class="daily-table">
+        <h2 style="text-align: center;">2-DUE DAILY</h2>
+        <table class="table table-hover table-bordered">
+            <caption>My Everday Tasks</caption>
+            <thead>
+                <tr class="table-secondary">
+                    <th class="text-start task-head">Task</th>
+                    <th class="text-start">Complete</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            {% if everyday %}
+            {% for row in everyday %}
             <tr>
                 <td class="text-start task">{{ row.task }}</td>
                 {% if row.completeness == 'incomplete' %}

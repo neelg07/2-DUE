@@ -560,8 +560,19 @@ h6.code {
 
 .task-head {
     min-width: 500px;
+    max-width: 750px;
+    max-height: 52px;
 }
 
 .task {
     vertical-align: middle;
+    overflow-x: auto;
+}
+
+caption {
+    caption-side: top;
+}
+
+.daily-table {
+    margin-bottom: 25px;
 }
