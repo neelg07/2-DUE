@@ -27,48 +27,33 @@
 
 {% block main %}
 
-    <!-- Add Daily Goals Form -->
-    <form action="/daily" class="daily" method="post">
-        <div class="daily-header">
-            <h3>Set and Achieve Goals By Adding To Your 2-DUE List!</h3>
-        </div>
-        <div class="mb-3 goals">
-            <input autocomplete="off" class="form-control mx-auto w-auto" id="daily" name="daily" placeholder="Set Goal" size="50" required>
-            <select class="form-select select" name="goal-type" id="goal-type" required >
-                <option value="select" selected disabled>Frequency</option>
-                <option value="today">Today</option>
-                <option value="everyday">Everyday</option>
-            </select>
-            <button class="btn btn-primary" id="daily-submit" name="daily-submit" type="submit">Add</button>
-        </div>
-    </form>
-
-     <!-- Today's Tasks -->
-     <div class="daily-table">
-        <h2 style="text-align: center;">2-DUE TODAY</h2>
-        <table class="table table-hover table-bordered">
-            <caption>My Tasks For Today</caption>
-            <thead>
-                <tr class="table-secondary">
-                    <th class="text-start task-head">Task</th>
-                    <th class="text-start">Complete</th>
+<form action="/daily" class="save-today" method="post">
+    <!-- Today's Tasks -->
+    <div class="daily-table">
+        <h2 style="text-align: center; margin-top: 25px;">2-DUE TODAY</h2>
+            <table class="table table-hover table-bordered">
+                <caption>My Tasks For Today</caption>
+                <thead>
+                    <tr class="table-secondary">
+                        <th class="text-start task-head">Task</th>
+                        <th class="text-start">Complete</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% if daily %}
+                {% for row in daily %}
+                <tr>
+                    <td class="text-start task">{{ row.task }}</td>
+                    {% if row.completeness == 'incomplete' %}
+                    <td class="center-td"><input type='checkbox' id='{{ row.id }}' name="{{ row.id }}"></td>
+                    {% else %} 
+                    <td class="center-td"><input type="checkbox" id="{{ row.id }}" name="{{ row.id }}" checked></td>
+                    {% endif %}
                 </tr>
-            </thead>
-            <tbody class="table-group-divider">
-            {% if daily %}
-            {% for row in daily %}
-            <tr>
-                <td class="text-start task">{{ row.task }}</td>
-                {% if row.completeness == 'incomplete' %}
-                <td class="center-td"><input type='checkbox' id='{{ row.id }}' name="{{ row.id }}"></td>
-                {% else %} 
-                <td class="center-td"><input type="checkbox" id="{{ row.id }}" name="{{ row.id }}" checked></td>
+                {% endfor %}
                 {% endif %}
-            </tr>
-            {% endfor %}
-            {% endif %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
     </div>
 
     <!-- Everyday Tasks -->
@@ -98,4 +83,24 @@
             </tbody>
         </table>
     </div>
+
+    <button type="submit" class="btn btn-primary" id="save-daily" name="save-daily">Save Changes</button>
+</form>
+
+    <!-- Add Daily Goals Form -->
+    <form action="/daily" class="daily" method="post">
+        <div class="daily-header">
+            <h3>Set and Achieve Goals By Adding To Your 2-DUE List!</h3>
+        </div>
+        <div class="mb-3 goals">
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="daily" name="daily" placeholder="Set Goal" size="50" required>
+            <select class="form-select select" name="goal-type" id="goal-type" required >
+                <option value="select" selected disabled>Frequency</option>
+                <option value="today">Today</option>
+                <option value="everyday">Everyday</option>
+            </select>
+            <button class="btn btn-primary" id="daily-submit" name="daily-submit" type="submit">Add</button>
+        </div>
+    </form>
+
 {% endblock %}
