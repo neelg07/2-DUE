@@ -271,8 +271,8 @@ def daily():
         id = session['user_id']
         username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
 
-        daily = db.execute("SELECT * FROM tasks WHERE id = (?) AND frequency = (?)", session['user_id'], 'today') 
-        everyday = db.execute("SELECT * FROM tasks WHERE id = (?) AND frequency = (?)", session['user_id'], 'everyday')
+        daily = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'today') 
+        everyday = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'everyday')
 
         return render_template('daily.html', username=username, daily=daily, everyday=everyday)
 
@@ -280,12 +280,32 @@ def daily():
     # POST request
     elif request.method == 'POST':
 
-        task = request.form.get('daily')
-        frequency = request.form.get('goal-type')
+        # ADD task form POST
+        if 'daily-submit' in request.form:
 
-        db.execute("INSERT INTO tasks (id, task, frequency, completeness) VALUES (?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete')
+            task = request.form.get('daily')
+            frequency = request.form.get('goal-type')
 
-        return redirect('/daily')
+            db.execute("INSERT INTO todo (id, task, frequency, completeness) VALUES (?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete')
+
+            return redirect('/daily')
+
+
+        # Save changes to task lists complete/incomplete
+        elif 'save-daily' in request.form:
+
+            rows = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?) OR frequency = (?)", session['user_id'], 'today', 'everyday')
+
+            # Iterate thru each checkbox and update db if checked off
+            checked = request.form.getlist('checkbox')
+
+            # checked = ['task_id', 'task_id',...]
+            for task in checked:
+                
+                db.execute("UPDATE todo SET completeness = (?) WHERE task_id = (?)", 'complete', task)
+
+            # Render template after updating all db
+            return redirect('/daily')
 
 
 

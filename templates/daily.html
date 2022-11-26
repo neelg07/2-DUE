@@ -28,6 +28,7 @@
 {% block main %}
 
 <form action="/daily" class="save-today" method="post">
+
     <!-- Today's Tasks -->
     <div class="daily-table">
         <h2 style="text-align: center; margin-top: 25px;">2-DUE TODAY</h2>
@@ -45,9 +46,9 @@
                 <tr>
                     <td class="text-start task">{{ row.task }}</td>
                     {% if row.completeness == 'incomplete' %}
-                    <td class="center-td"><input type='checkbox' id='{{ row.id }}' name="{{ row.id }}"></td>
+                    <td class="center-td"><input type='checkbox' id='incomplete' value="{{ row.task_id }}" name="checkbox"></td>
                     {% else %} 
-                    <td class="center-td"><input type="checkbox" id="{{ row.id }}" name="{{ row.id }}" checked></td>
+                    <td class="center-td"><input type="checkbox" id="complete" value="{{ row.task_id }}" name="checkbox" checked></td>
                     {% endif %}
                 </tr>
                 {% endfor %}
@@ -73,9 +74,9 @@
             <tr>
                 <td class="text-start task">{{ row.task }}</td>
                 {% if row.completeness == 'incomplete' %}
-                <td class="center-td"><input type='checkbox' id='{{ row.id }}' name="{{ row.id }}"></td>
+                <td class="center-td"><input type='checkbox' id='incomplete' value="{{ row.task_id }}" name="checkbox"></td>
                 {% else %} 
-                <td class="center-td"><input type="checkbox" id="{{ row.id }}" name="{{ row.id }}" checked></td>
+                <td class="center-td"><input type="checkbox" id="complete" value="{{ row.task_id }}" name="checkbox" checked></td>
                 {% endif %}
             </tr>
             {% endfor %}

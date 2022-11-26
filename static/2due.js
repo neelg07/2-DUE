@@ -16,3 +16,9 @@ frequency.addEventListener('click', () => {
 
     frequency.removeAttribute('style');
 });
+
+
+// Checkbox update 
+const saveBtn = document.getElementById('save-daily');
+
+saveBtn.addEventListener('submit',)
