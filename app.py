@@ -299,9 +299,14 @@ def daily():
             # Iterate thru each checkbox and update db if checked off
             checked = request.form.getlist('checkbox')
 
+            # Set to incomplete if not checked or unchecked
+            for row in rows:
+                if row['task_id'] not in checked:
+                    db.execute("UPDATE todo SET completeness = (?) WHERE task_id = (?)", 'incomplete', row['task_id'])
+
             # checked = ['task_id', 'task_id',...]
             for task in checked:
-                
+                # Set to complete if task is checked
                 db.execute("UPDATE todo SET completeness = (?) WHERE task_id = (?)", 'complete', task)
 
             # Render template after updating all db
