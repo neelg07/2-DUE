@@ -365,7 +365,6 @@ button.close-register:active {
     min-width: 325px;
     min-height: 190px;
     position: relative;
-    left: 25px;
     background: radial-gradient(at left bottom, rgb(244, 247, 248), rgb(149, 218, 243), rgb(66, 125, 207));
 }
 
@@ -395,7 +394,11 @@ button.close-register:active {
 .weather-main {
     display: flex;
     flex-flow: column;
-    align-items: flex-start;
+    align-items: center;
+}
+
+ul {
+    padding-left: 0rem;
 }
 
 .weather-info {
