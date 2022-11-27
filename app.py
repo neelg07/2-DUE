@@ -291,6 +291,15 @@ def daily():
             return redirect('/daily')
 
 
+        # REMOVE task form POST
+        elif 'remove-submit' in request.form:
+
+            removed = request.form.get('remove')
+            db.execute("DELETE FROM todo WHERE task_id = (?)", removed)
+
+            return redirect('/daily')
+
+
         # Save changes to task lists complete/incomplete
         elif 'save-daily' in request.form:
 
