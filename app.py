@@ -323,7 +323,7 @@ def daily():
 
 
 
-@app.route('/monthly')
+@app.route('/monthly', methods=['GET', 'POST'])
 #@login_required
 def monthly():
 
@@ -334,7 +334,55 @@ def monthly():
         id = session['user_id']
         username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
 
-        return render_template('monthly.html', username=username)
+        month = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'month') 
+        monthly = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'monthly')
+
+        return render_template('monthly.html', username=username, month=month, monthly=monthly)
+
+
+    # POST request
+    elif request.method == 'POST':
+
+        # ADD goals for month POST
+        if 'monthly-submit' in request.form:
+
+            task = request.form.get('monthly')
+            frequency = request.form.get('goal-type')
+
+            db.execute("INSERT INTO todo (id, task, frequency, completeness) VALUES (?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete')
+
+            return redirect('/monthly')
+
+
+        # REMOVE goals for month POST
+        elif 'remove-submit' in request.form:
+
+            removed = request.form.get('remove')
+            db.execute("DELETE FROM todo WHERE task_id = (?)", removed)
+
+            return redirect('/monthly')
+
+
+        # SAVE completeness status changes
+        elif 'save-daily' in request.form:
+
+            rows = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?) OR frequency = (?)", session['user_id'], 'month', 'monthly')
+
+            # Iterate thru each checkbox and update db if checked off
+            checked = request.form.getlist('checkbox')
+
+            # Set to incomplete if not checked or unchecked
+            for row in rows:
+                if row['task_id'] not in checked:
+                    db.execute("UPDATE todo SET completeness = (?) WHERE task_id = (?)", 'incomplete', row['task_id'])
+
+            # checked = ['task_id', 'task_id',...]
+            for task in checked:
+                # Set to complete if task is checked
+                db.execute("UPDATE todo SET completeness = (?) WHERE task_id = (?)", 'complete', task)
+
+            # Render template after updating all db
+            return redirect('/monthly')
 
 
 

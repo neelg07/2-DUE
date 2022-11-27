@@ -1,7 +1,11 @@
 {% extends 'layout.html' %}
 
+{% block script %}
+    <script src="/static/2due.js" defer></script>
+{% endblock %}
+
 {% block nav %}
-    <a class="navbar-brand" href="/weather"><span class="blue">2</span><span class="red dash">-</span><span class="yellow">D</span><span class="green">U</span><span class="red">E</span></a>
+    <a class="navbar-brand" href="/monthly"><span class="blue">2</span><span class="red dash">-</span><span class="yellow">D</span><span class="green">U</span><span class="red">E</span></a>
     <h2 class="weather-header"><em>2-DUE MONTHLY</em></h2>
 
     <div class="login btn-group">
@@ -22,5 +26,96 @@
 {% endblock %}
 
 {% block main %}
-    Monthly To-Do
+    
+    <!-- Add Daily Goals Form -->
+    <form action="/monthly" class="daily" method="post">
+        <div class="daily-header">
+            <h3>Add Goals to Complete For This Month!</h3>
+        </div>
+        <div class="mb-3 goals">
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="daily" name="monthly" placeholder="Set Goal" size="50" required>
+            <select class="form-select select" name="goal-type" id="goal-type">
+                <option value="select" selected disabled>Frequency</option>
+                <option value="month">This Month</option>
+                <option value="monthly">Every Month</option>
+            </select>
+            <button class="btn btn-primary" id="daily-submit" name="monthly-submit" type="submit">Add</button>
+        </div>
+    </form>
+
+    <form action="/monthly" class="save-today" method="post">
+        <!-- Month Tasks -->
+        <div class="daily-table">
+            <h2 style="text-align: center; margin-top: 25px;">2-DUE THIS MONTH</h2>
+                <table class="table table-hover table-bordered">
+                    <caption>My Tasks For This Month</caption>
+                    <thead>
+                        <tr class="table-secondary">
+                            <th class="text-center task-id">Id #</th>
+                            <th class="text-start task-head">Task</th>
+                            <th class="text-start">Complete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                    {% if month %}
+                    {% for row in month %}
+                    <tr>
+                        <td class="text-center">{{ row.task_id }}</td>
+                        <td class="text-start task">{{ row.task }}</td>
+                        {% if row.completeness == 'incomplete' %}
+                        <td class="center-td"><input type='checkbox' id='incomplete' value="{{ row.task_id }}" name="checkbox"></td>
+                        {% else %} 
+                        <td class="center-td" id="complete"><input type="checkbox" value="{{ row.task_id }}" name="checkbox" checked></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+        </div>
+        
+        <!-- Every Month -->
+        <div class="daily-table">
+            <h2 style="text-align: center;">2-DUE EACH MONTH</h2>
+            <table class="table table-hover table-bordered">
+                <caption>My Monthly Recurring Tasks</caption>
+                <thead>
+                    <tr class="table-secondary">
+                        <th class="text-center task-id">Id #</th>
+                        <th class="text-start task-head">Task</th>
+                        <th class="text-start">Complete</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% if monthly %}
+                {% for row in monthly %}
+                <tr>
+                    <td class="text-center">{{ row.task_id }}</td>
+                    <td class="text-start task">{{ row.task }}</td>
+                    {% if row.completeness == 'incomplete' %}
+                    <td class="center-td"><input type='checkbox' id='incomplete' value="{{ row.task_id }}" name="checkbox"></td>
+                    {% else %} 
+                    <td class="center-td" id="complete"><input type="checkbox" id="complete" value="{{ row.task_id }}" name="checkbox" checked></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="save-daily" name="save-daily">Save Changes</button>
+    </form>
+
+    <!-- Remove Goals Form -->
+    <form action="/monthly" class="daily" method="post">
+        <div class="daily-header">
+            <h3>Remove Unwanted or Completed Tasks</h3>
+        </div>
+        <div class="remove">
+            <label for="remove">Remove Task: </label>
+            <input type="number" class="form-control w-auto" autocomplete='off' placeholder='Id #' name="remove" id="remove" required>
+            <button class="btn btn-primary" id='remove-submit' name="remove-submit" type="submit">Remove Task</button>
+        </div>
+    </form>
 {% endblock %}
