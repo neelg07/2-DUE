@@ -548,6 +548,7 @@ h6.code {
     color:rgb(250, 129, 31);
     text-shadow: 2px 1px #000;
     margin-bottom: 25px;
+    min-width: 740px;
 }
 
 .center-td {
@@ -607,7 +608,6 @@ caption {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: auto;
     gap: 20px;
 }
 
