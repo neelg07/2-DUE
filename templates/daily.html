@@ -36,6 +36,7 @@
                 <caption>My Tasks For Today</caption>
                 <thead>
                     <tr class="table-secondary">
+                        <th class="text-center task-id">Id #</th>
                         <th class="text-start task-head">Task</th>
                         <th class="text-start">Complete</th>
                     </tr>
@@ -44,11 +45,12 @@
                 {% if daily %}
                 {% for row in daily %}
                 <tr>
+                    <td class="text-center">{{ row.task_id }}</td>
                     <td class="text-start task">{{ row.task }}</td>
                     {% if row.completeness == 'incomplete' %}
                     <td class="center-td"><input type='checkbox' id='incomplete' value="{{ row.task_id }}" name="checkbox"></td>
                     {% else %} 
-                    <td class="center-td"><input type="checkbox" id="complete" value="{{ row.task_id }}" name="checkbox" checked></td>
+                    <td class="center-td" id="complete"><input type="checkbox" value="{{ row.task_id }}" name="checkbox" checked></td>
                     {% endif %}
                 </tr>
                 {% endfor %}
@@ -64,6 +66,7 @@
             <caption>My Everday Tasks</caption>
             <thead>
                 <tr class="table-secondary">
+                    <th class="text-center task-id">Id #</th>
                     <th class="text-start task-head">Task</th>
                     <th class="text-start">Complete</th>
                 </tr>
@@ -72,11 +75,12 @@
             {% if everyday %}
             {% for row in everyday %}
             <tr>
+                <td class="text-center">{{ row.task_id }}</td>
                 <td class="text-start task">{{ row.task }}</td>
                 {% if row.completeness == 'incomplete' %}
                 <td class="center-td"><input type='checkbox' id='incomplete' value="{{ row.task_id }}" name="checkbox"></td>
                 {% else %} 
-                <td class="center-td"><input type="checkbox" id="complete" value="{{ row.task_id }}" name="checkbox" checked></td>
+                <td class="center-td" id="complete"><input type="checkbox" id="complete" value="{{ row.task_id }}" name="checkbox" checked></td>
                 {% endif %}
             </tr>
             {% endfor %}
@@ -101,6 +105,16 @@
                 <option value="everyday">Everyday</option>
             </select>
             <button class="btn btn-primary" id="daily-submit" name="daily-submit" type="submit">Add</button>
+        </div>
+    </form>
+    <form action="/daily" class="daily" method="post">
+        <div class="daily-header">
+            <h3>Remove Unwanted or Completed Tasks</h3>
+        </div>
+        <div class="remove">
+            <label for="remove">Remove Task: </label>
+            <input type="text" class="form-control w-auto" autocomplete='off' placeholder='Id #' name="remove" id="remove" required>
+            <button class="btn btn-primary" id='remove-submit' name="remove-submit" type="submit">Remove Task</button>
         </div>
     </form>
 
