@@ -33,7 +33,7 @@
             <h3>Set and Achieve Goals By Adding To Your Yearly 2-DUE List!</h3>
         </div>
         <div class="mb-3 goals">
-            <input autocomplete="off" class="form-control mx-auto w-auto" id="daily" name="annualy" placeholder="Set Goal" size="50" required>
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="daily" name="annually" placeholder="Set Goal" size="50" required>
             <select class="form-select select" name="goal-type" id="goal-type">
                 <option value="select" selected disabled>Frequency</option>
                 <option value="year">This Year</option>
@@ -58,8 +58,8 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                    {% if month %}
-                    {% for row in month %}
+                    {% if year %}
+                    {% for row in year %}
                     <tr>
                         <td class="text-center">{{ row.task_id }}</td>
                         <td class="text-start task">{{ row.task }}</td>
@@ -88,8 +88,8 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                {% if monthly %}
-                {% for row in monthly %}
+                {% if annual %}
+                {% for row in annual %}
                 <tr>
                     <td class="text-center">{{ row.task_id }}</td>
                     <td class="text-start task">{{ row.task }}</td>
