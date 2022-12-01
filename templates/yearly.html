@@ -28,28 +28,28 @@
 {% block main %}
     
     <!-- Add Daily Goals Form -->
-    <form action="/monthly" class="daily" method="post">
+    <form action="/yearly" class="daily" method="post">
         <div class="daily-header">
-            <h3>Add Goals to Complete For This Month!</h3>
+            <h3>Set and Achieve Goals By Adding To Your Yearly 2-DUE List!</h3>
         </div>
         <div class="mb-3 goals">
-            <input autocomplete="off" class="form-control mx-auto w-auto" id="daily" name="monthly" placeholder="Set Goal" size="50" required>
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="daily" name="annualy" placeholder="Set Goal" size="50" required>
             <select class="form-select select" name="goal-type" id="goal-type">
                 <option value="select" selected disabled>Frequency</option>
-                <option value="month">This Month</option>
-                <option value="monthly">Every Month</option>
+                <option value="year">This Year</option>
+                <option value="annual">Every Year</option>
             </select>
-            <button class="btn btn-primary" id="daily-submit" name="monthly-submit" type="submit">Add</button>
+            <button class="btn btn-primary" id="daily-submit" name="yearly-submit" type="submit">Add</button>
         </div>
     </form>
 
     
-    <form action="/monthly" class="save-today" method="post">
+    <form action="/yearly" class="save-today" method="post">
         <!-- Month Tasks -->
         <div class="daily-table">
-            <h2 style="text-align: center; margin-top: 25px;">2-DUE THIS MONTH</h2>
+            <h2 style="text-align: center; margin-top: 25px;">2-DUE THIS YEAR</h2>
                 <table class="table table-hover table-bordered">
-                    <caption>My Tasks For This Month</caption>
+                    <caption>My Tasks For This Year</caption>
                     <thead>
                         <tr class="table-secondary">
                             <th class="text-center task-id">Id #</th>
@@ -77,9 +77,9 @@
         
         <!-- Every Month -->
         <div class="daily-table">
-            <h2 style="text-align: center;">2-DUE EACH MONTH</h2>
+            <h2 style="text-align: center;">2-DUE ANNUALLY</h2>
             <table class="table table-hover table-bordered">
-                <caption>My Monthly Recurring Tasks</caption>
+                <caption>My Anually Recurring Tasks</caption>
                 <thead>
                     <tr class="table-secondary">
                         <th class="text-center task-id">Id #</th>
@@ -109,7 +109,7 @@
     </form>
 
     <!-- Remove Goals Form -->
-    <form action="/monthly" class="daily" method="post">
+    <form action="/yearly" class="daily" method="post">
         <div class="daily-header">
             <h3>Remove Unwanted or Completed Tasks</h3>
         </div>
