@@ -626,3 +626,14 @@ caption {
 #remove {
     width: clamp(8ch, 20%, 25ch) !important;
 }
+
+.end {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#date {
+    height: clamp(100%, 1.5em, 2em);
+}
