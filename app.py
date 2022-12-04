@@ -356,17 +356,37 @@ def daily():
 #@login_required
 def monthly():
 
+    today = datetime.now()
+    today_month = today.month
+    year = today.year
+
+    months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ]
+
+    MONTH = months[int(today_month) - 1]
+
     # GET request
     if request.method == "GET":
 
         # Pull info from db for menu
-        id = session['user_id']
-        username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
+        username = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
 
-        month = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'month') 
+        month = db.execute("SELECT * FROM todo WHERE id = (?) AND month = (?) AND year = (?) AND frequency = (?)", session['user_id'], today_month, year, 'month') 
         monthly = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'monthly')
 
-        return render_template('monthly.html', username=username, month=month, monthly=monthly)
+        return render_template('monthly.html', username=username, month=month, monthly=monthly, MONTH=MONTH, year=year)
 
 
     # POST request
@@ -378,9 +398,14 @@ def monthly():
             task = request.form.get('monthly')
             frequency = request.form.get('goal-type')
 
-            db.execute("INSERT INTO todo (id, task, frequency, completeness) VALUES (?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete')
+            db.execute("INSERT INTO todo (id, task, frequency, completeness, month, year) VALUES (?, ?, ?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete', today_month, year)
 
-            return redirect('/monthly')
+            username = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+
+            month = db.execute("SELECT * FROM todo WHERE id = (?) AND month = (?) AND year = (?) AND frequency = (?)", session['user_id'], today_month, year, 'month') 
+            monthly = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'monthly')
+
+            return render_template('monthly.html', username=username, month=month, monthly=monthly, MONTH=MONTH, year=year)
 
 
         # REMOVE goals for month POST
@@ -389,13 +414,22 @@ def monthly():
             removed = request.form.get('remove')
             db.execute("DELETE FROM todo WHERE task_id = (?)", removed)
 
-            return redirect('/monthly')
+            username = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+
+            month = db.execute("SELECT * FROM todo WHERE id = (?) AND month = (?) AND year = (?) AND frequency = (?)", session['user_id'], today_month, year, 'month') 
+            monthly = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'monthly')
+
+            return render_template('monthly.html', username=username, month=month, monthly=monthly, MONTH=MONTH, year=year)
 
 
         # SAVE completeness status changes
         elif 'save-daily' in request.form:
 
-            rows = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?) OR frequency = (?)", session['user_id'], 'month', 'monthly')
+            if request.form.get('date'):
+                today = request.form.get('date').split('-')
+                month, year = today[1], today[0]
+
+            rows = db.execute("SELECT * FROM todo WHERE id = (?) AND month = (?) AND year = (?) AND frequency = (?) OR frequency = (?)", session['user_id'], today_month, year, 'month', 'monthly')
 
             # Iterate thru each checkbox and update db if checked off
             checked = request.form.getlist('checkbox')
@@ -411,7 +445,12 @@ def monthly():
                 db.execute("UPDATE todo SET completeness = (?) WHERE task_id = (?)", 'complete', task)
 
             # Render template after updating all db
-            return redirect('/monthly')
+            username = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+
+            month = db.execute("SELECT * FROM todo WHERE id = (?) AND month = (?) AND year = (?) AND frequency = (?)", session['user_id'], today_month, year, 'month') 
+            monthly = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'monthly')
+
+            return render_template('monthly.html', username=username, month=month, monthly=monthly, MONTH=MONTH, year=year)
 
 
 
@@ -419,17 +458,20 @@ def monthly():
 #@login_required
 def yearly():
 
+    id = session['user_id']
+    today = datetime.now()
+    this_year = today.year
+
     # GET request
     if request.method == "GET":
 
         # Pull info from db for menu
-        id = session['user_id']
         username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
 
-        year = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'year')
+        year = db.execute("SELECT * FROM todo WHERE id = (?) AND year = (?) AND frequency = (?)", session['user_id'], this_year, 'year')
         annual = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'annual')
 
-        return render_template('yearly.html', username=username, year=year, annual=annual)
+        return render_template('yearly.html', username=username, year=year, annual=annual, this_year=this_year)
 
     
     # POST request
@@ -441,9 +483,14 @@ def yearly():
             task = request.form.get('annually')
             frequency = request.form.get('goal-type')
 
-            db.execute("INSERT INTO todo (id, task, frequency, completeness) VALUES (?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete')
+            db.execute("INSERT INTO todo (id, task, frequency, completeness, year) VALUES (?, ?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete', this_year)
 
-            return redirect('/yearly')
+            username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
+
+            year = db.execute("SELECT * FROM todo WHERE id = (?) AND year = (?) AND frequency = (?)", session['user_id'], this_year, 'year')
+            annual = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'annual')
+
+            return render_template('yearly.html', username=username, year=year, annual=annual, this_year=this_year)
 
         
         # REMOVE task form POST
@@ -452,13 +499,23 @@ def yearly():
             removed = request.form.get('remove')
             db.execute("DELETE FROM todo WHERE task_id = (?)", removed)
 
-            return redirect('/yearly')
+            username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
+
+            year = db.execute("SELECT * FROM todo WHERE id = (?) AND year = (?) AND frequency = (?)", session['user_id'], this_year, 'year')
+            annual = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'annual')
+
+            return render_template('yearly.html', username=username, year=year, annual=annual, this_year=this_year)
+
 
 
         # SAVE completeness status changes
         elif 'save-daily' in request.form:
 
-            rows = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?) OR frequency = (?)", session['user_id'], 'year', 'annual')
+            if request.form.get('date'):
+                today = request.form.get('date').split('-')
+                this_year = today[0]
+
+            rows = db.execute("SELECT * FROM todo WHERE id = (?) AND year = (?) AND frequency = (?) OR frequency = (?)", session['user_id'], this_year, 'year', 'annual')
 
             # Iterate thru each checkbox and update db if checked off
             checked = request.form.getlist('checkbox')
@@ -474,4 +531,9 @@ def yearly():
                 db.execute("UPDATE todo SET completeness = (?) WHERE task_id = (?)", 'complete', task)
 
             # Render template after updating all db
-            return redirect('/yearly')
+            username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
+
+            year = db.execute("SELECT * FROM todo WHERE id = (?) AND year = (?) AND frequency = (?)", session['user_id'], this_year, 'year')
+            annual = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'annual')
+
+            return render_template('yearly.html', username=username, year=year, annual=annual, this_year=this_year)

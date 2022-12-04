@@ -47,6 +47,7 @@
         <!-- Month Tasks -->
         <div class="daily-table">
             <h2 style="text-align: center; margin-top: 25px;">2-DUE THIS MONTH</h2>
+            <h4 style="text-align: center;">{{ MONTH }}/{{ year }}</h4>
                 <table class="table table-hover table-bordered">
                     <caption>My Tasks For This Month</caption>
                     <thead>
@@ -103,7 +104,10 @@
                 </tbody>
             </table>
         </div>
-
+        <div class="end">
+            <label for="date">Date: </label>
+            <input type="date" id="date" name="date">
+        </div>
         <button type="submit" class="btn btn-primary" id="save-daily" name="save-daily">Save Changes</button>
     </form>
 
