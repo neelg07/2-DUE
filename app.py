@@ -1,7 +1,7 @@
 import os
-import datetime
 import random
 import requests
+from datetime import datetime
 import json
 
 from cs50 import SQL
@@ -264,46 +264,23 @@ def logout():
 #@login_required
 def daily():
 
-    # GET request
-    if request.method == "GET":
-
-        # Pull info from db for menu
-        id = session['user_id']
-        username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
-
-        daily = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'today') 
-        everyday = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'everyday')
-
-        return render_template('daily.html', username=username, daily=daily, everyday=everyday)
-
+    today = datetime.now()
+    day = today.day
+    month = today.month
+    year = today.year
     
     # POST request
-    elif request.method == 'POST':
-
-        # ADD task form POST
-        if 'daily-submit' in request.form:
-
-            task = request.form.get('daily')
-            frequency = request.form.get('goal-type')
-
-            db.execute("INSERT INTO todo (id, task, frequency, completeness) VALUES (?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete')
-
-            return redirect('/daily')
-
-
-        # REMOVE task form POST
-        elif 'remove-submit' in request.form:
-
-            removed = request.form.get('remove')
-            db.execute("DELETE FROM todo WHERE task_id = (?)", removed)
-
-            return redirect('/daily')
-
+    if request.method == 'POST':
 
         # Save changes to task lists complete/incomplete
-        elif 'save-daily' in request.form:
+        if 'save-daily' in request.form:
 
-            rows = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?) OR frequency = (?)", session['user_id'], 'today', 'everyday')
+            # Get date value from form input
+            if request.form.get('date'):
+                today = request.form.get('date').split('-')
+                day, month, year = today[2], today[1], today[0]
+
+            rows = db.execute("SELECT * FROM todo WHERE id = (?) AND year = (?) AND month = (?) AND day = (?) AND frequency = (?) OR frequency = (?)", session['user_id'], year, month, day, 'today', 'everyday')
 
             # Iterate thru each checkbox and update db if checked off
             checked = request.form.getlist('checkbox')
@@ -318,8 +295,60 @@ def daily():
                 # Set to complete if task is checked
                 db.execute("UPDATE todo SET completeness = (?) WHERE task_id = (?)", 'complete', task)
 
+
             # Render template after updating all db
-            return redirect('/daily')
+            username = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+
+            daily = db.execute("SELECT * FROM todo WHERE id = (?) AND day = (?) AND month = (?) AND year = (?) AND frequency = (?)", session['user_id'], day, month, year, 'today') 
+            everyday = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'everyday')
+
+            return render_template('daily.html', username=username, daily=daily, everyday=everyday, day=day, month=month, year=year)
+
+
+        # ADD task form POST
+        elif 'daily-submit' in request.form:
+
+            username = db.execute("SELECT username FROM users WHERE id = (?)", session['user_id'])[0]['username']
+            
+            task = request.form.get('daily')
+            frequency = request.form.get('goal-type')
+
+            db.execute("INSERT INTO todo (id, task, frequency, completeness, day, month, year) VALUES (?, ?, ?, ?, ?, ?, ?)", session['user_id'], task, frequency, 'incomplete', day, month, year)
+
+            daily = db.execute("SELECT * FROM todo WHERE id = (?) AND day = (?) AND month = (?) AND year = (?) AND frequency = (?)", session['user_id'], day, month, year, 'today') 
+            everyday = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'everyday')
+
+            return render_template('daily.html', username=username, daily=daily, everyday=everyday, day=day, month=month, year=year)
+
+
+
+        # REMOVE task form POST
+        elif 'remove-submit' in request.form:
+
+            removed = request.form.get('remove')
+            db.execute("DELETE FROM todo WHERE task_id = (?)", removed)
+
+            # Render template after updating all db
+            username = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+
+            daily = db.execute("SELECT * FROM todo WHERE id = (?) AND day = (?) AND month = (?) AND year = (?) AND frequency = (?)", session['user_id'], day, month, year, 'today') 
+            everyday = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'everyday')
+
+            return render_template('daily.html', username=username, daily=daily, everyday=everyday, day=day, month=month, year=year)
+
+
+    # GET request
+    elif request.method == "GET":
+
+        # Pull info from db for menu
+        id = session['user_id']
+        username = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
+
+        daily = db.execute("SELECT * FROM todo WHERE id = (?) AND day = (?) AND month = (?) AND year = (?) AND frequency = (?)", session['user_id'], day, month, year, 'today') 
+        everyday = db.execute("SELECT * FROM todo WHERE id = (?) AND frequency = (?)", session['user_id'], 'everyday')
+
+        return render_template('daily.html', username=username, daily=daily, everyday=everyday, day=day, month=month, year=year)
+
 
 
 
