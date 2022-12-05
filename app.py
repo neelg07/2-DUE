@@ -10,6 +10,7 @@ from flask_simple_geoip import SimpleGeoIP
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
+from functools import wraps
 
 # Config application
 app = Flask(__name__)
@@ -43,6 +44,21 @@ def after_request(response):
     response.headers['Expires'] = 0
     response.headers['Pragma'] = 'no-cache'
     return response
+
+
+def login_required(f):
+    """
+    Decorate routes to require login.
+
+    https://flask.palletsprojects/com/en/1.1.x/patterns/viewdecorators/
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get('user_id') is None:
+            return redirect('/')
+        return f(*args, **kwargs)
+    return decorated_function
+
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -159,7 +175,7 @@ def index():
 
 
 @app.route('/weather', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def weather():
 
     if request.method == 'GET':
@@ -206,7 +222,7 @@ def weather():
 
 
 @app.route('/account', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def account():
 
     # GET request 
@@ -261,7 +277,7 @@ def logout():
 
 
 @app.route('/daily', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def daily():
 
     today = datetime.now()
@@ -353,7 +369,7 @@ def daily():
 
 
 @app.route('/monthly', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def monthly():
 
     today = datetime.now()
@@ -455,7 +471,7 @@ def monthly():
 
 
 @app.route('/yearly', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def yearly():
 
     id = session['user_id']
